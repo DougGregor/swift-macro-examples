@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BD8A3130294947BD00E83EB9 /* Macros.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8A312F294947BD00E83EB9 /* Macros.swift */; };
+		BD8A31312949480600E83EB9 /* libMacroExamplesLib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BD8A3126294947A100E83EB9 /* libMacroExamplesLib.dylib */; };
 		BDF5AFE42947E5B000FA119B /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDF5AFE32947E5B000FA119B /* main.swift */; };
 		BDF5AFF82947E95C00FA119B /* StringifyMacro.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDF5AFF72947E95C00FA119B /* StringifyMacro.swift */; };
 		BDFB14B52948484000708DA6 /* MacroExamplesPluginTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDFB14B42948484000708DA6 /* MacroExamplesPluginTest.swift */; };
@@ -14,6 +16,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		BD8A31322949480C00E83EB9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BDF5AFD82947E5B000FA119B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BD8A3125294947A100E83EB9;
+			remoteInfo = MacroExamplesLib;
+		};
+		BD8A31342949480C00E83EB9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BDF5AFD82947E5B000FA119B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BDF5AFED2947E61100FA119B;
+			remoteInfo = MacroExamplesPlugin;
+		};
 		BDFB14B72948484000708DA6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BDF5AFD82947E5B000FA119B /* Project object */;
@@ -36,6 +52,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		BD8A3126294947A100E83EB9 /* libMacroExamplesLib.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libMacroExamplesLib.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD8A312F294947BD00E83EB9 /* Macros.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Macros.swift; sourceTree = "<group>"; };
 		BDF5AFE02947E5B000FA119B /* MacroExamples */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MacroExamples; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDF5AFE32947E5B000FA119B /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		BDF5AFEE2947E61100FA119B /* libMacroExamplesPlugin.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libMacroExamplesPlugin.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -45,10 +63,18 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		BD8A3124294947A100E83EB9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BDF5AFDD2947E5B000FA119B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD8A31312949480600E83EB9 /* libMacroExamplesLib.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,12 +96,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BD8A3127294947A100E83EB9 /* MacroExamplesLib */ = {
+			isa = PBXGroup;
+			children = (
+				BD8A312F294947BD00E83EB9 /* Macros.swift */,
+			);
+			path = MacroExamplesLib;
+			sourceTree = "<group>";
+		};
 		BDF5AFD72947E5B000FA119B = {
 			isa = PBXGroup;
 			children = (
 				BDF5AFE22947E5B000FA119B /* MacroExamples */,
 				BDF5AFEF2947E61100FA119B /* MacroExamplesPlugin */,
 				BDFB14B32948484000708DA6 /* MacroExamplesPluginTest */,
+				BD8A3127294947A100E83EB9 /* MacroExamplesLib */,
 				BDF5AFE12947E5B000FA119B /* Products */,
 				BDF5B0162947FE1A00FA119B /* Frameworks */,
 			);
@@ -87,6 +122,7 @@
 				BDF5AFE02947E5B000FA119B /* MacroExamples */,
 				BDF5AFEE2947E61100FA119B /* libMacroExamplesPlugin.dylib */,
 				BDFB14B22948484000708DA6 /* MacroExamplesPluginTest.xctest */,
+				BD8A3126294947A100E83EB9 /* libMacroExamplesLib.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -125,6 +161,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		BD8A3122294947A100E83EB9 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BDF5AFEA2947E61100FA119B /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -135,6 +178,23 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		BD8A3125294947A100E83EB9 /* MacroExamplesLib */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BD8A312C294947A100E83EB9 /* Build configuration list for PBXNativeTarget "MacroExamplesLib" */;
+			buildPhases = (
+				BD8A3122294947A100E83EB9 /* Headers */,
+				BD8A3123294947A100E83EB9 /* Sources */,
+				BD8A3124294947A100E83EB9 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MacroExamplesLib;
+			productName = MacroExamplesLib;
+			productReference = BD8A3126294947A100E83EB9 /* libMacroExamplesLib.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
 		BDF5AFDF2947E5B000FA119B /* MacroExamples */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = BDF5AFE72947E5B000FA119B /* Build configuration list for PBXNativeTarget "MacroExamples" */;
@@ -146,6 +206,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				BD8A31332949480C00E83EB9 /* PBXTargetDependency */,
+				BD8A31352949480C00E83EB9 /* PBXTargetDependency */,
 			);
 			name = MacroExamples;
 			packageProductDependencies = (
@@ -201,6 +263,10 @@
 				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+					BD8A3125294947A100E83EB9 = {
+						CreatedOnToolsVersion = 14.3;
+						LastSwiftMigration = 1430;
+					};
 					BDF5AFDF2947E5B000FA119B = {
 						CreatedOnToolsVersion = 14.3;
 					};
@@ -231,6 +297,7 @@
 				BDF5AFDF2947E5B000FA119B /* MacroExamples */,
 				BDF5AFED2947E61100FA119B /* MacroExamplesPlugin */,
 				BDFB14B12948484000708DA6 /* MacroExamplesPluginTest */,
+				BD8A3125294947A100E83EB9 /* MacroExamplesLib */,
 			);
 		};
 /* End PBXProject section */
@@ -246,6 +313,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		BD8A3123294947A100E83EB9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BD8A3130294947BD00E83EB9 /* Macros.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BDF5AFDC2947E5B000FA119B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -273,6 +348,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		BD8A31332949480C00E83EB9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BD8A3125294947A100E83EB9 /* MacroExamplesLib */;
+			targetProxy = BD8A31322949480C00E83EB9 /* PBXContainerItemProxy */;
+		};
+		BD8A31352949480C00E83EB9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BDF5AFED2947E61100FA119B /* MacroExamplesPlugin */;
+			targetProxy = BD8A31342949480C00E83EB9 /* PBXContainerItemProxy */;
+		};
 		BDFB14B82948484000708DA6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			platformFilters = (
@@ -284,6 +369,41 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		BD8A312D294947A100E83EB9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = lib;
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				OTHER_SWIFT_FLAGS = "-Xfrontend -enable-experimental-feature -Xfrontend Macros -Xfrontend -load-plugin-library -Xfrontend ${BUILD_DIR}/${CONFIGURATION}/libMacroExamplesPlugin.dylib";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		BD8A312E294947A100E83EB9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = lib;
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				OTHER_SWIFT_FLAGS = "-Xfrontend -enable-experimental-feature -Xfrontend Macros -Xfrontend -load-plugin-library -Xfrontend ${BUILD_DIR}/${CONFIGURATION}/libMacroExamplesPlugin.dylib";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 		BDF5AFE52947E5B000FA119B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -503,6 +623,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		BD8A312C294947A100E83EB9 /* Build configuration list for PBXNativeTarget "MacroExamplesLib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BD8A312D294947A100E83EB9 /* Debug */,
+				BD8A312E294947A100E83EB9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		BDF5AFDB2947E5B000FA119B /* Build configuration list for PBXProject "MacroExamples" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -5,7 +5,8 @@
 //  Created by Doug Gregor on 12/12/22.
 //
 
-import Foundation
+macro stringify<T>(_ value: T) -> (T, String) = MacroExamplesPlugin.StringifyMacro
 
-print("Hello, World!")
-
+let x = 1
+let y = 2
+print(#stringify(x + y))

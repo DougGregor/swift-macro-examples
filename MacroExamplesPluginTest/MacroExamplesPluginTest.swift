@@ -27,10 +27,10 @@ final class MacroExamplesPluginTests: XCTestCase {
     )
     XCTAssertEqual(
       transformedSF.description,
-      """
+      #"""
       let a = (x + y, "x + y")
       let b = ("Hello, \(name)", #""Hello, \(name)""#)
-      """
+      """#
     )
   }
 }

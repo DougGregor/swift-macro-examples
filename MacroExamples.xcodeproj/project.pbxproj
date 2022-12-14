@@ -30,6 +30,13 @@
 			remoteGlobalIDString = BDF5AFED2947E61100FA119B;
 			remoteInfo = MacroExamplesPlugin;
 		};
+		BD8A313629494C4C00E83EB9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BDF5AFD82947E5B000FA119B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BDF5AFED2947E61100FA119B;
+			remoteInfo = MacroExamplesPlugin;
+		};
 		BDFB14B72948484000708DA6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BDF5AFD82947E5B000FA119B /* Project object */;
@@ -189,6 +196,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				BD8A313729494C4C00E83EB9 /* PBXTargetDependency */,
 			);
 			name = MacroExamplesLib;
 			productName = MacroExamplesLib;
@@ -357,6 +365,11 @@
 			isa = PBXTargetDependency;
 			target = BDF5AFED2947E61100FA119B /* MacroExamplesPlugin */;
 			targetProxy = BD8A31342949480C00E83EB9 /* PBXContainerItemProxy */;
+		};
+		BD8A313729494C4C00E83EB9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BDF5AFED2947E61100FA119B /* MacroExamplesPlugin */;
+			targetProxy = BD8A313629494C4C00E83EB9 /* PBXContainerItemProxy */;
 		};
 		BDFB14B82948484000708DA6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

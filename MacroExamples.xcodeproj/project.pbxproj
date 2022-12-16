@@ -64,7 +64,7 @@
 		BDF5AFE02947E5B000FA119B /* MacroExamples */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MacroExamples; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDF5AFE32947E5B000FA119B /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		BDF5AFEE2947E61100FA119B /* libMacroExamplesPlugin.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libMacroExamplesPlugin.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		BDF5AFF72947E95C00FA119B /* StringifyMacro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StringifyMacro.swift; path = MacroExamples/StringifyMacro.swift; sourceTree = SOURCE_ROOT; };
+		BDF5AFF72947E95C00FA119B /* StringifyMacro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StringifyMacro.swift; path = MacroExamplesPlugin/StringifyMacro.swift; sourceTree = SOURCE_ROOT; };
 		BDFB14B22948484000708DA6 /* MacroExamplesPluginTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MacroExamplesPluginTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDFB14B42948484000708DA6 /* MacroExamplesPluginTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacroExamplesPluginTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -103,6 +103,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BD841F80294CE14500DA4D81 /* MacroExamplesPlugin */ = {
+			isa = PBXGroup;
+			children = (
+				BDF5AFF72947E95C00FA119B /* StringifyMacro.swift */,
+			);
+			path = MacroExamplesPlugin;
+			sourceTree = "<group>";
+		};
 		BD8A3127294947A100E83EB9 /* MacroExamplesLib */ = {
 			isa = PBXGroup;
 			children = (
@@ -114,8 +122,8 @@
 		BDF5AFD72947E5B000FA119B = {
 			isa = PBXGroup;
 			children = (
+				BD841F80294CE14500DA4D81 /* MacroExamplesPlugin */,
 				BDF5AFE22947E5B000FA119B /* MacroExamples */,
-				BDF5AFEF2947E61100FA119B /* MacroExamplesPlugin */,
 				BDFB14B32948484000708DA6 /* MacroExamplesPluginTest */,
 				BD8A3127294947A100E83EB9 /* MacroExamplesLib */,
 				BDF5AFE12947E5B000FA119B /* Products */,
@@ -140,14 +148,6 @@
 				BDF5AFE32947E5B000FA119B /* main.swift */,
 			);
 			path = MacroExamples;
-			sourceTree = "<group>";
-		};
-		BDF5AFEF2947E61100FA119B /* MacroExamplesPlugin */ = {
-			isa = PBXGroup;
-			children = (
-				BDF5AFF72947E95C00FA119B /* StringifyMacro.swift */,
-			);
-			path = MacroExamplesPlugin;
 			sourceTree = "<group>";
 		};
 		BDF5B0162947FE1A00FA119B /* Frameworks */ = {
@@ -534,7 +534,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				OTHER_SWIFT_FLAGS = "-Xfrontend -enable-experimental-feature -Xfrontend Macros -Xfrontend -load-plugin-library -Xfrontend ${BUILD_DIR}/${CONFIGURATION}/libMacroExamplesPlugin.dylib";
+				OTHER_SWIFT_FLAGS = "-Xfrontend -enable-experimental-feature -Xfrontend Macros -Xfrontend -load-plugin-library -Xfrontend ${BUILD_DIR}/${CONFIGURATION}/libMacroExamplesPlugin.dylib -Xfrontend -dump-macro-expansions";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -544,7 +544,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				OTHER_SWIFT_FLAGS = "-Xfrontend -enable-experimental-feature -Xfrontend Macros -Xfrontend -load-plugin-library -Xfrontend ${BUILD_DIR}/${CONFIGURATION}/libMacroExamplesPlugin.dylib";
+				OTHER_SWIFT_FLAGS = "-Xfrontend -enable-experimental-feature -Xfrontend Macros -Xfrontend -load-plugin-library -Xfrontend ${BUILD_DIR}/${CONFIGURATION}/libMacroExamplesPlugin.dylib -Xfrontend -dump-macro-expansions";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};

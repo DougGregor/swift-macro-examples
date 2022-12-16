@@ -43,4 +43,3 @@ The introduction of macros into Swift will involve a number of different proposa
 
 * [Expression macros](https://forums.swift.org/t/pitch-2-expression-macros/61861): Introduces the ability to add macros that transform expressions into other expressions.
 
-## 

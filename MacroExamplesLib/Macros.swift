@@ -6,3 +6,7 @@ public macro stringify<T>(_ value: T) -> (T, String) = MacroExamplesPlugin.Strin
 /// Macro that produces a warning on "+" operators within the expression, and
 /// suggests changing them to "-".
 public macro addBlocker<T>(_ value: T) -> T = MacroExamplesPlugin.AddBlocker
+
+/// Macro that produces a warning, as a replacement for the built-in
+/// #warning("...").
+public macro myWarning(_ message: String) = MacroExamplesPlugin.WarningMacro

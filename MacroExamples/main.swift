@@ -17,3 +17,11 @@ print(#addBlocker(x * y + z))
 // Uncomment to get an error out of the macro.
 //   let text = "oops"
 //   #myWarning(text)
+
+
+struct Font: ExpressibleByFontLiteral {
+  init(fontLiteralName: String, size: Int, weight: MacroExamplesLib.FontWeight) {
+  }
+}
+
+let font: Font = #fontLiteral(name: "Comic Sans", size: 14, weight: .thin)

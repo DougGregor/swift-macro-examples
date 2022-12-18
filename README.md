@@ -11,7 +11,7 @@ Macros are an experimental feature, so you will need a custom Swift toolchain an
 1. Download a [development snapshot](https://www.swift.org/download/#snapshots) of the compiler from Swift.org from December 15, 2022 or later. At present, we only have these working on macOS, but are working to get other platforms working with other build systems.
 2. Open the project `MacroExamples.xcodeproj` in Xcode.
 3. Go to the Xcode -> Toolchains menu and select the development toolchain you downloaded.
-4. Make sure the `MacroExamples` scheme is selected, then build and run!
+4. Make sure the `MacroExamples` scheme is selected, then build and run! If the first build fails, build again--there's something funky going on with the dependencies.
 
 The output of the `MacroExamples` program is pretty simple: it shows the result of running the example macro(s).
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		46A18274294F539400217140 /* PrintArgumentsMacro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A18273294F539400217140 /* PrintArgumentsMacro.swift */; };
 		BD752BE5294D3BEC00D00A2E /* WarningMacro.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD752BE4294D3BEC00D00A2E /* WarningMacro.swift */; };
 		BD752BE7294D461B00D00A2E /* FontLiteralMacro.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD752BE6294D461B00D00A2E /* FontLiteralMacro.swift */; };
 		BD841F82294CE1F600DA4D81 /* AddBlocker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD841F81294CE1F600DA4D81 /* AddBlocker.swift */; };
@@ -62,6 +63,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		46A18273294F539400217140 /* PrintArgumentsMacro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintArgumentsMacro.swift; sourceTree = "<group>"; };
 		BD752BE4294D3BEC00D00A2E /* WarningMacro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningMacro.swift; sourceTree = "<group>"; };
 		BD752BE6294D461B00D00A2E /* FontLiteralMacro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontLiteralMacro.swift; sourceTree = "<group>"; };
 		BD841F81294CE1F600DA4D81 /* AddBlocker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBlocker.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				BD841F81294CE1F600DA4D81 /* AddBlocker.swift */,
 				BD752BE4294D3BEC00D00A2E /* WarningMacro.swift */,
 				BD752BE6294D461B00D00A2E /* FontLiteralMacro.swift */,
+				46A18273294F539400217140 /* PrintArgumentsMacro.swift */,
 			);
 			path = MacroExamplesPlugin;
 			sourceTree = "<group>";
@@ -352,6 +355,7 @@
 			files = (
 				BD841F82294CE1F600DA4D81 /* AddBlocker.swift in Sources */,
 				BD752BE5294D3BEC00D00A2E /* WarningMacro.swift in Sources */,
+				46A18274294F539400217140 /* PrintArgumentsMacro.swift in Sources */,
 				BDF5AFF82947E95C00FA119B /* StringifyMacro.swift in Sources */,
 				BD752BE7294D461B00D00A2E /* FontLiteralMacro.swift in Sources */,
 			);

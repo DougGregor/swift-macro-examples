@@ -25,3 +25,10 @@ struct Font: ExpressibleByFontLiteral {
 }
 
 let font: Font = #fontLiteral(name: "Comic Sans", size: 14, weight: .thin)
+
+func doSomething(_ a: Int, b: Int, c d: Int, e _: Int, _: Int, _ _: Int) {
+    #printArguments()
+}
+
+// Prints doSomething(42, b: 256, c: 512, e: _, _, _)
+doSomething(42, b: 256, c: 512, e: 600, 1024, 2048)

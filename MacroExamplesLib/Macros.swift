@@ -26,3 +26,6 @@ public protocol ExpressibleByFontLiteral {
 /// Font literal similar to, e.g., #colorLiteral.
 public macro fontLiteral<T>(name: String, size: Int, weight: FontWeight) -> T = MacroExamplesPlugin.FontLiteralMacro
   where T: ExpressibleByFontLiteral
+
+/// Can be called inside a function to print the function name and arguments.
+public macro printArguments() = MacroExamplesPlugin.PrintArgumentsMacro

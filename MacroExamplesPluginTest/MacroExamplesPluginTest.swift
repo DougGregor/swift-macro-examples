@@ -4,13 +4,9 @@ import _SwiftSyntaxMacros
 import MacroExamplesPlugin
 import XCTest
 
-extension MacroSystem {
-  static var testSystem: MacroSystem {
-    var system = MacroSystem()
-    try! system.add(StringifyMacro.self, name: "stringify")
-    return system
-  }
-}
+var testMacros: [String: Macro.Type] = [
+  "stringify" : StringifyMacro.self,
+]
 
 final class MacroExamplesPluginTests: XCTestCase {
   func testStringify() {
@@ -22,9 +18,7 @@ final class MacroExamplesPluginTests: XCTestCase {
     var context = MacroExpansionContext(
       moduleName: "MyModule", fileName: "test.swift"
     )
-    let transformedSF = MacroSystem.testSystem.evaluateMacros(
-      node: sf, in: &context
-    )
+    let transformedSF = sf.expand(macros: testMacros, in: &context)
     XCTAssertEqual(
       transformedSF.description,
       #"""

@@ -62,6 +62,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		BD3FE05C296611F200426C82 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		BD752BE4294D3BEC00D00A2E /* WarningMacro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningMacro.swift; sourceTree = "<group>"; };
 		BD752BE6294D461B00D00A2E /* FontLiteralMacro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontLiteralMacro.swift; sourceTree = "<group>"; };
 		BD841F81294CE1F600DA4D81 /* AddBlocker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBlocker.swift; sourceTree = "<group>"; };
@@ -131,6 +132,7 @@
 		BDF5AFD72947E5B000FA119B = {
 			isa = PBXGroup;
 			children = (
+				BD3FE05C296611F200426C82 /* README.md */,
 				BD841F80294CE14500DA4D81 /* MacroExamplesPlugin */,
 				BDF5AFE22947E5B000FA119B /* MacroExamples */,
 				BDFB14B32948484000708DA6 /* MacroExamplesPluginTest */,

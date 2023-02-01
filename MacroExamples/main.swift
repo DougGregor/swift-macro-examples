@@ -6,14 +6,18 @@ let y = 2
 let z = 3
 
 // "Stringify" macro turns the expression into a string.
-print(#stringify(x + y))
-
+func testStringify() {
+  print(#stringify(x + y))
+}
 // "AddBlocker" complains about addition operations. We emit a warning
 // so it doesn't block compilation.
-print(#addBlocker(x * y + z))
+func blockAdd() {
+  print(#addBlocker(x * y + z))
+}
 
-#myWarning("remember to pass a string literal here")
-
+func produceWarning() {
+  #myWarning("remember to pass a string literal here")
+}
 // Uncomment to get an error out of the macro.
 //   let text = "oops"
 //   #myWarning(text)
@@ -24,4 +28,11 @@ struct Font: ExpressibleByFontLiteral {
   }
 }
 
-let font: Font = #fontLiteral(name: "Comic Sans", size: 14, weight: .thin)
+func testFontLiteral() {
+  let font: Font = #fontLiteral(name: "Comic Sans", size: 14, weight: .thin)
+}
+
+testStringify()
+blockAdd()
+produceWarning()
+testFontLiteral()

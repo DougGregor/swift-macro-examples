@@ -1,15 +1,15 @@
 
 /// "Stringify" the provided value and produce a tuple that includes both the
 /// original value as well as the source code that generated it.
-@expression public macro stringify<T>(_ value: T) -> (T, String) = #externalMacro(module: "MacroExamplesPlugin", type: "StringifyMacro")
+@freestanding(expression) public macro stringify<T>(_ value: T) -> (T, String) = #externalMacro(module: "MacroExamplesPlugin", type: "StringifyMacro")
 
 /// Macro that produces a warning on "+" operators within the expression, and
 /// suggests changing them to "-".
-@expression public macro addBlocker<T>(_ value: T) -> T = #externalMacro(module: "MacroExamplesPlugin", type: "AddBlocker")
+@freestanding(expression) public macro addBlocker<T>(_ value: T) -> T = #externalMacro(module: "MacroExamplesPlugin", type: "AddBlocker")
 
 /// Macro that produces a warning, as a replacement for the built-in
 /// #warning("...").
-@expression public macro myWarning(_ message: String) = #externalMacro(module: "MacroExamplesPlugin", type: "WarningMacro")
+@freestanding(expression) public macro myWarning(_ message: String) = #externalMacro(module: "MacroExamplesPlugin", type: "WarningMacro")
 
 public enum FontWeight {
   case thin
@@ -24,5 +24,5 @@ public protocol ExpressibleByFontLiteral {
 }
 
 /// Font literal similar to, e.g., #colorLiteral.
-@expression public macro fontLiteral<T>(name: String, size: Int, weight: FontWeight) -> T = #externalMacro(module: "MacroExamplesPlugin", type: "FontLiteralMacro")
+@freestanding(expression) public macro fontLiteral<T>(name: String, size: Int, weight: FontWeight) -> T = #externalMacro(module: "MacroExamplesPlugin", type: "FontLiteralMacro")
   where T: ExpressibleByFontLiteral

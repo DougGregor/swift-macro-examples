@@ -1,6 +1,6 @@
 import SwiftSyntax
 import SwiftSyntaxBuilder
-import _SwiftSyntaxMacros
+import SwiftSyntaxMacros
 import MacroExamplesPlugin
 import XCTest
 
@@ -15,10 +15,10 @@ final class MacroExamplesPluginTests: XCTestCase {
       let a = #stringify(x + y)
       let b = #stringify("Hello, \(name)")
       """#
-    var context = MacroExpansionContext(
-      moduleName: "MyModule", fileName: "test.swift"
+    let context = BasicMacroExpansionContext.init(
+      sourceFiles: [sf: .init(moduleName: "MyModule", fullFilePath: "test.swift")]
     )
-    let transformedSF = sf.expand(macros: testMacros, in: &context)
+    let transformedSF = sf.expand(macros: testMacros, in: context)
     XCTAssertEqual(
       transformedSF.description,
       #"""

@@ -4,11 +4,11 @@ import SwiftSyntaxMacros
 
 /// Implementation of the `myWarning` macro, which mimics the behavior of the
 /// built-in `#warning`.
-public struct WarningMacro: DeclarationMacro {
+public struct WarningMacro: ExpressionMacro {
   public static func expansion(
     of macro: some FreestandingMacroExpansionSyntax,
     in context: some MacroExpansionContext
-  ) throws -> [DeclSyntax] {
+  ) throws -> ExprSyntax {
     guard let firstElement = macro.argumentList.first,
           let stringLiteral = firstElement.expression
       .as(StringLiteralExprSyntax.self),
@@ -29,6 +29,6 @@ public struct WarningMacro: DeclarationMacro {
       )
     )
 
-    return []
+    return "()"
   }
 }

@@ -1,6 +1,6 @@
 import SwiftDiagnostics
 import SwiftSyntax
-import _SwiftSyntaxMacros
+import SwiftSyntaxMacros
 
 enum CustomError: Error, CustomStringConvertible {
    case message(String)
@@ -15,8 +15,8 @@ enum CustomError: Error, CustomStringConvertible {
 
  public struct WarningMacro: ExpressionMacro {
    public static func expansion(
-     of macro: MacroExpansionExprSyntax,
-     in context: inout MacroExpansionContext
+     of macro: some FreestandingMacroExpansionSyntax,
+     in context: some MacroExpansionContext
    ) throws -> ExprSyntax {
      guard let firstElement = macro.argumentList.first,
        let stringLiteral = firstElement.expression

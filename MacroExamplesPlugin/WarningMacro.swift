@@ -39,5 +39,5 @@ enum CustomError: Error, CustomStringConvertible {
      )
 
      return "()"
-   }
- }
+  }
+}

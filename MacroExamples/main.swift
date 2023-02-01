@@ -15,13 +15,13 @@ func blockAdd() {
   print(#addBlocker(x * y + z))
 }
 
-func produceWarning() {
+func warningAndError() {
   #myWarning("remember to pass a string literal here")
-}
-// Uncomment to get an error out of the macro.
-//   let text = "oops"
-//   #myWarning(text)
 
+  // Uncomment to get an error out of the macro.
+  // let text = "oops"
+  // #myWarning(text)
+}
 
 struct Font: ExpressibleByFontLiteral {
   init(fontLiteralName: String, size: Int, weight: MacroExamplesLib.FontWeight) {
@@ -29,10 +29,10 @@ struct Font: ExpressibleByFontLiteral {
 }
 
 func testFontLiteral() {
-  let font: Font = #fontLiteral(name: "Comic Sans", size: 14, weight: .thin)
+  let _: Font = #fontLiteral(name: "Comic Sans", size: 14, weight: .thin)
 }
 
 testStringify()
 blockAdd()
-produceWarning()
+warningAndError()
 testFontLiteral()

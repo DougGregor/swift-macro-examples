@@ -3,16 +3,10 @@ import SwiftSyntax
 import SwiftOperators
 import SwiftDiagnostics
 
-struct SimpleDiagnosticMessage: DiagnosticMessage, Error {
-  let message: String
-  let diagnosticID: MessageID
-  let severity: DiagnosticSeverity
-}
-
-extension SimpleDiagnosticMessage: FixItMessage {
-  var fixItID: MessageID { diagnosticID }
-}
-
+/// Implementation of the `addBlocker` macro, which demonstrates how to
+/// produce detailed diagnostics from a macro implementation for an utterly
+/// silly task: warning about every "add" (binary +) in the argument, with a
+/// Fix-It that changes it to a "-".
 public struct AddBlocker: ExpressionMacro {
   class AddVisitor: SyntaxRewriter {
     var diagnostics: [Diagnostic] = []
@@ -20,22 +14,28 @@ public struct AddBlocker: ExpressionMacro {
     override func visit(
       _ node: InfixOperatorExprSyntax
     ) -> ExprSyntax {
+      // Identify any infix operator + in the tree.
       if let binOp = node.operatorOperand.as(BinaryOperatorExprSyntax.self) {
         if binOp.operatorToken.text == "+" {
+          // Form the warning
           let messageID = MessageID(domain: "silly", id: "addblock")
           diagnostics.append(
             Diagnostic(
+              // Where the warning should go (on the "+").
               node: Syntax(node.operatorOperand),
+              // The warning message and severity.
               message: SimpleDiagnosticMessage(
                 message: "blocked an add; did you mean to subtract?",
                 diagnosticID: messageID,
                 severity: .warning
               ),
+              // Highlight the left and right sides of the `+`.
               highlights: [
                 Syntax(node.leftOperand),
                 Syntax(node.rightOperand)
               ],
               fixIts: [
+                // Fix-It to replace the '+' with a '-'.
                 FixIt(
                   message: SimpleDiagnosticMessage(
                     message: "use '-'",
@@ -82,10 +82,6 @@ public struct AddBlocker: ExpressionMacro {
     of node: some FreestandingMacroExpansionSyntax,
     in context: some MacroExpansionContext
   ) throws -> ExprSyntax {
-    guard let argument = node.argumentList.first?.expression else {
-      fatalError("boom")
-    }
-
     let visitor = AddVisitor()
     let result = visitor.visit(Syntax(node))
 

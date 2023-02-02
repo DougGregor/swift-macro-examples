@@ -36,3 +36,28 @@ testStringify()
 blockAdd()
 warningAndError()
 testFontLiteral()
+
+// Use the "wrapStoredProperties" macro to deprecate all of the stored
+// properties.
+@wrapStoredProperties(#"available(*, deprecated, message: "hands off my data")"#)
+struct OldStorage {
+  var x: Int
+}
+
+// The deprecation warning below comes from the deprecation attribute
+// introduced by @wrapStoredProperties on OldStorage.
+_ = OldStorage(x: 5).x
+
+// Move the storage from each of the stored properties into a dictionary
+// called `_storage`, turning the stored properties into computed properties.
+@DictionaryStorage
+struct Point {
+  var x: Int = 1
+  var y: Int = 2
+}
+
+var point = Point()
+print("Point storage begins as an empty dictionary: \(point)")
+print("Default value for point.x: \(point.x)")
+point.y = 17
+print("Point storage contains only the value we set:  \(point)")

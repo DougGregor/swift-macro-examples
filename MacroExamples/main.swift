@@ -6,37 +6,29 @@ let y = 2
 let z = 3
 
 // "Stringify" macro turns the expression into a string.
-func testStringify() {
-  print(#stringify(x + y))
-}
+print(#stringify(x + y))
+
 // "AddBlocker" complains about addition operations. We emit a warning
 // so it doesn't block compilation.
-func blockAdd() {
-  print(#addBlocker(x * y + z))
-}
+print(#addBlocker(x * y + z))
 
-func warningAndError() {
-  #myWarning("remember to pass a string literal here")
+#myWarning("remember to pass a string literal here")
 
-  // Uncomment to get an error out of the macro.
-  // let text = "oops"
-  // #myWarning(text)
-}
+// Uncomment to get an error out of the macro.
+// let text = "oops"
+// #myWarning(text)
 
 struct Font: ExpressibleByFontLiteral {
   init(fontLiteralName: String, size: Int, weight: MacroExamplesLib.FontWeight) {
   }
 }
 
-func testFontLiteral() {
-  let _: Font = #fontLiteral(name: "Comic Sans", size: 14, weight: .thin)
-}
+let _: Font = #fontLiteral(name: "Comic Sans", size: 14, weight: .thin)
 
-testStringify()
-blockAdd()
-warningAndError()
-testFontLiteral()
-
+// TODO: February 2, 2023 snapshot toolchain cannot handle this, so disable it
+// for now. The bug has been fixed on main and should be available in the next
+// snapshot.
+#if false
 // Use the "wrapStoredProperties" macro to deprecate all of the stored
 // properties.
 @wrapStoredProperties(#"available(*, deprecated, message: "hands off my data")"#)
@@ -47,6 +39,7 @@ struct OldStorage {
 // The deprecation warning below comes from the deprecation attribute
 // introduced by @wrapStoredProperties on OldStorage.
 _ = OldStorage(x: 5).x
+#endif
 
 // Move the storage from each of the stored properties into a dictionary
 // called `_storage`, turning the stored properties into computed properties.

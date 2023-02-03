@@ -8,12 +8,18 @@ There is an active effort to introduce [macros](https://forums.swift.org/t/a-pos
 
 Macros are an experimental feature, so you will need a custom Swift toolchain and some extra compiler flags. The Xcode project in this repository is a good starting point. To use it:
 
-1. Download a [development snapshot](https://www.swift.org/download/#snapshots) of the compiler from Swift.org from January 1, 2022 or later. At present, we only have these working on macOS, but are working to get other platforms working with other build systems.
+1. Download a [development snapshot](https://www.swift.org/download/#snapshots) of the compiler from Swift.org from February 2, 2023 or later. At present, we only have these working on macOS, but are working to get other platforms working with other build systems.
 2. Open the project `MacroExamples.xcodeproj` in Xcode.
 3. Go to the Xcode -> Toolchains menu and select the development toolchain you downloaded.
 4. Make sure the `MacroExamples` scheme is selected, then build and run! If the first build fails, build again--there's something funky going on with the dependencies.
 
-The output of the `MacroExamples` program is pretty simple: it shows the result of running the example macro(s).
+The output of the `MacroExamples` program is pretty simple: it shows the result of running the example macro(s). The `main.swift` file is annotated to describe what the macros are actually doing.
+
+## Example macros
+
+A number of macros in this package are designed to illustrate different capabilities of the macro system:
+* `#addBlocker`: demonstrates how a freestanding macro can emit compiler diagnostics based on the source code for the macro argument, by producing a warning for each use of the binary `+` operator with range highlighting and a Fix-It to replace the `+` with `-`.
+* `@DictionaryStorage`: demonstrates how an attached macro can have multiple roles that compose together to move all of the stored properties of a type into a separate dictionary.
 
 ## Adding your own macro
 
@@ -30,7 +36,8 @@ This examples package is meant to grow to include additional macros that have in
 * **Declaration**: a macro is declared in the `MacroExamplesLib` target, using the `macro` introducer. For example, the simple `stringify` macro is declared like this:
 
   ```swift
-  public macro stringify<T>(_ value: T) -> (T, String) = MacroExamplesPlugin.StringifyMacro
+  @freestanding(expression)
+  public macro stringify<T>(_ value: T) -> (T, String) = #externalMacro(module: "MacroExamplesPlugin", type: "StringifyMacro")
   ```
 
   The name after `macro` is the name to be used in source code, whereas the name after the `=` is the module and type name for your macro implementation. If you haven't implemented that type, or get the name wrong, you will get a compiler warning.

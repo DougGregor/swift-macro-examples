@@ -54,3 +54,28 @@ print("Point storage begins as an empty dictionary: \(point)")
 print("Default value for point.x: \(point.x)")
 point.y = 17
 print("Point storage contains only the value we set:  \(point)")
+
+// MARK: - ObservableMacro
+
+struct Treat {}
+
+@Observable
+final class Dog: Observable {
+  var name: String?
+  var treat: Treat?
+
+  var isHappy: Bool = true
+
+  init() {}
+
+  func bark() {
+    print("bork bork")
+  }
+}
+
+let dog = Dog()
+print(dog.name ?? "")
+dog.name = "George"
+dog.treat = Treat()
+print(dog.name ?? "")
+dog.bark()

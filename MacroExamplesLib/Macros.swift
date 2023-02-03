@@ -47,3 +47,44 @@ public macro wrapStoredProperties(_ attributeName: String) = #externalMacro(modu
 @attached(member, names: named(_storage))
 @attached(memberAttribute)
 public macro DictionaryStorage() = #externalMacro(module: "MacroExamplesPlugin", type: "DictionaryStorageMacro")
+
+public protocol Observable {}
+
+public protocol Observer<Subject> {
+  associatedtype Subject: Observable
+}
+
+public struct ObservationRegistrar<Subject: Observable> {
+  public init() {}
+
+  public func addObserver(_ observer: some Observer<Subject>) {}
+
+  public func removeObserver(_ observer: some Observer<Subject>) {}
+
+  public func beginAccess<Value>(_ keyPath: KeyPath<Subject, Value>) {
+    print("beginning access for \(keyPath)")
+  }
+
+  public func beginAccess() {
+    print("beginning access in \(Subject.self)")
+  }
+
+  public func endAccess() {
+    print("ending access in \(Subject.self)")
+  }
+
+  public func register<Value>(observable: Subject, willSet: KeyPath<Subject, Value>, to: Value) {
+    print("registering willSet event for \(willSet)")
+  }
+
+  public func register<Value>(observable: Subject, didSet: KeyPath<Subject, Value>) {
+    print("registering didSet event for \(didSet)")
+  }
+}
+
+@attached(member)
+@attached(memberAttribute)
+public macro Observable() = #externalMacro(module: "MacroExamplesPlugin", type: "ObservableMacro")
+
+@attached(accessor)
+public macro ObservableProperty() = #externalMacro(module: "MacroExamplesPlugin", type: "ObservablePropertyMacro")

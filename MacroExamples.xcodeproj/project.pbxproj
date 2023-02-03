@@ -19,6 +19,7 @@
 		BDF5AFF82947E95C00FA119B /* StringifyMacro.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDF5AFF72947E95C00FA119B /* StringifyMacro.swift */; };
 		BDFB14B52948484000708DA6 /* MacroExamplesPluginTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDFB14B42948484000708DA6 /* MacroExamplesPluginTest.swift */; };
 		BDFB14B62948484000708DA6 /* libMacroExamplesPlugin.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BDF5AFEE2947E61100FA119B /* libMacroExamplesPlugin.dylib */; platformFilters = (macos, ); };
+		EC21BDEB298D9F9900D585C6 /* ObservableMacro.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC21BDEA298D9F9900D585C6 /* ObservableMacro.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,7 @@
 		BDF5AFF72947E95C00FA119B /* StringifyMacro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StringifyMacro.swift; path = MacroExamplesPlugin/StringifyMacro.swift; sourceTree = SOURCE_ROOT; };
 		BDFB14B22948484000708DA6 /* MacroExamplesPluginTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MacroExamplesPluginTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDFB14B42948484000708DA6 /* MacroExamplesPluginTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacroExamplesPluginTest.swift; sourceTree = "<group>"; };
+		EC21BDEA298D9F9900D585C6 /* ObservableMacro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableMacro.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 				BD841F81294CE1F600DA4D81 /* AddBlocker.swift */,
 				BD752BE4294D3BEC00D00A2E /* WarningMacro.swift */,
 				BD752BE6294D461B00D00A2E /* FontLiteralMacro.swift */,
+				EC21BDEA298D9F9900D585C6 /* ObservableMacro.swift */,
 				BD2CDEE8298B24040015A701 /* Diagnostics.swift */,
 				BD2CDEEA298B34730015A701 /* WrapStoredPropertiesMacro.swift */,
 				BD2CDEEC298B4A650015A701 /* DictionaryIndirectionMacro.swift */,
@@ -365,6 +368,7 @@
 				BD2CDEEB298B34730015A701 /* WrapStoredPropertiesMacro.swift in Sources */,
 				BD752BE5294D3BEC00D00A2E /* WarningMacro.swift in Sources */,
 				BDF5AFF82947E95C00FA119B /* StringifyMacro.swift in Sources */,
+				EC21BDEB298D9F9900D585C6 /* ObservableMacro.swift in Sources */,
 				BD2CDEE9298B24040015A701 /* Diagnostics.swift in Sources */,
 				BD2CDEED298B4A650015A701 /* DictionaryIndirectionMacro.swift in Sources */,
 				BD752BE7294D461B00D00A2E /* FontLiteralMacro.swift in Sources */,

@@ -79,3 +79,27 @@ dog.name = "George"
 dog.treat = Treat()
 print(dog.name ?? "")
 dog.bark()
+
+// MARK: NewType
+
+@NewType(String.self)
+struct Hostname:
+  NewTypeProtocol,
+  Hashable,
+  CustomStringConvertible
+{ }
+
+@NewType(String.self)
+struct Password:
+  NewTypeProtocol,
+  Hashable,
+  CustomStringConvertible
+{
+  var description: String { "(redacted)" }
+}
+
+let hostname = Hostname("localhost")
+print("hostname: description=\(hostname) hashValue=\(hostname.hashValue)")
+
+let password = Password("squeamish ossifrage")
+print("password: description=\(password) hashValue=\(password.hashValue)")

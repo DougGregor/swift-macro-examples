@@ -152,6 +152,7 @@
 				BDF5AFE12947E5B000FA119B /* Products */,
 				BDF5B0162947FE1A00FA119B /* Frameworks */,
 			);
+			indentWidth = 2;
 			sourceTree = "<group>";
 		};
 		BDF5AFE12947E5B000FA119B /* Products */ = {

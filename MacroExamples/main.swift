@@ -25,10 +25,6 @@ struct Font: ExpressibleByFontLiteral {
 
 let _: Font = #fontLiteral(name: "Comic Sans", size: 14, weight: .thin)
 
-// TODO: February 2, 2023 snapshot toolchain cannot handle this, so disable it
-// for now. The bug has been fixed on main and should be available in the next
-// snapshot.
-#if false
 // Use the "wrapStoredProperties" macro to deprecate all of the stored
 // properties.
 @wrapStoredProperties(#"available(*, deprecated, message: "hands off my data")"#)
@@ -39,7 +35,6 @@ struct OldStorage {
 // The deprecation warning below comes from the deprecation attribute
 // introduced by @wrapStoredProperties on OldStorage.
 _ = OldStorage(x: 5).x
-#endif
 
 // Move the storage from each of the stored properties into a dictionary
 // called `_storage`, turning the stored properties into computed properties.

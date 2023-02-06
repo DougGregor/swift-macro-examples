@@ -3,13 +3,15 @@ import SwiftSyntaxMacros
 
 private extension DeclSyntaxProtocol {
   var isObservableStoredProperty: Bool {
-    guard let property = self.as(VariableDeclSyntax.self),
-          let binding = property.bindings.first
-    else {
-      return false
+    if let property = self.as(VariableDeclSyntax.self),
+       let binding = property.bindings.first,
+       let identifier = binding.pattern.as(IdentifierPatternSyntax.self)?.identifier,
+       identifier.text != "_registrar", identifier.text != "_storage",
+       binding.accessor == nil {
+      return true
     }
 
-    return binding.accessor == nil
+    return false
   }
 }
 
@@ -120,8 +122,6 @@ public struct ObservablePropertyMacro: AccessorMacro {
     else {
       return []
     }
-
-    if identifier.text == "_registrar" || identifier.text == "_storage" { return [] }
 
     let getAccessor: AccessorDeclSyntax =
       """

@@ -88,3 +88,7 @@ public macro Observable() = #externalMacro(module: "MacroExamplesPlugin", type: 
 
 @attached(accessor)
 public macro ObservableProperty() = #externalMacro(module: "MacroExamplesPlugin", type: "ObservablePropertyMacro")
+
+@attached(peer)
+public macro addCompletionHandler() =
+    #externalMacro(module: "MacroExamplesPlugin", type: "AddCompletionHandlerMacro")

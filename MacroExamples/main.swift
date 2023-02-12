@@ -98,3 +98,14 @@ print("hostname: description=\(hostname) hashValue=\(hostname.hashValue)")
 
 let password = Password("squeamish ossifrage")
 print("password: description=\(password) hashValue=\(password.hashValue)")
+
+struct MyStruct {
+  @addCompletionHandler
+  func f(a: Int, for b: String, _ value: Double) async -> String {
+    return b
+  }
+}
+
+MyStruct().f(a: 1, for: "hello", 3.14159) { result in
+  print("Eventually received \(result + "!")")
+}

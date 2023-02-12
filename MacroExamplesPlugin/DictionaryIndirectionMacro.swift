@@ -64,7 +64,7 @@ extension DictionaryStorageMacro: MemberMacro {
 extension DictionaryStorageMacro: MemberAttributeMacro {
   public static func expansion(
     of node: AttributeSyntax, attachedTo declaration: some DeclGroupSyntax,
-    providingAttributesFor member: DeclSyntax,
+    providingAttributesFor member: some DeclSyntaxProtocol,
     in context: some MacroExpansionContext
   ) throws -> [AttributeSyntax] {
     guard let property = member.as(VariableDeclSyntax.self),

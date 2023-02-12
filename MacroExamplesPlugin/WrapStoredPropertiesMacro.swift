@@ -15,7 +15,7 @@ public struct WrapStoredPropertiesMacro: MemberAttributeMacro {
   >(
     of node: AttributeSyntax,
     attachedTo decl: Declaration,
-    providingAttributesFor member: DeclSyntax,
+    providingAttributesFor member: some DeclSyntaxProtocol,
     in context: Context
   ) throws -> [AttributeSyntax] {
     guard let property = member.as(VariableDeclSyntax.self),

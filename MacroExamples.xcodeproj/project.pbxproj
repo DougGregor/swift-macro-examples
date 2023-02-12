@@ -13,6 +13,7 @@
 		BD2CDEE9298B24040015A701 /* Diagnostics.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2CDEE8298B24040015A701 /* Diagnostics.swift */; };
 		BD2CDEEB298B34730015A701 /* WrapStoredPropertiesMacro.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2CDEEA298B34730015A701 /* WrapStoredPropertiesMacro.swift */; };
 		BD2CDEED298B4A650015A701 /* DictionaryIndirectionMacro.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2CDEEC298B4A650015A701 /* DictionaryIndirectionMacro.swift */; };
+		BD7324B829989178009C6A08 /* AddCompletionHandlerMacro.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7324B729989178009C6A08 /* AddCompletionHandlerMacro.swift */; };
 		BD752BE5294D3BEC00D00A2E /* WarningMacro.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD752BE4294D3BEC00D00A2E /* WarningMacro.swift */; };
 		BD752BE7294D461B00D00A2E /* FontLiteralMacro.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD752BE6294D461B00D00A2E /* FontLiteralMacro.swift */; };
 		BD841F82294CE1F600DA4D81 /* AddBlocker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD841F81294CE1F600DA4D81 /* AddBlocker.swift */; };
@@ -76,6 +77,7 @@
 		BD2CDEEA298B34730015A701 /* WrapStoredPropertiesMacro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrapStoredPropertiesMacro.swift; sourceTree = "<group>"; };
 		BD2CDEEC298B4A650015A701 /* DictionaryIndirectionMacro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryIndirectionMacro.swift; sourceTree = "<group>"; };
 		BD3FE05C296611F200426C82 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		BD7324B729989178009C6A08 /* AddCompletionHandlerMacro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCompletionHandlerMacro.swift; sourceTree = "<group>"; };
 		BD752BE4294D3BEC00D00A2E /* WarningMacro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningMacro.swift; sourceTree = "<group>"; };
 		BD752BE6294D461B00D00A2E /* FontLiteralMacro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontLiteralMacro.swift; sourceTree = "<group>"; };
 		BD841F81294CE1F600DA4D81 /* AddBlocker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBlocker.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				BD2CDEEA298B34730015A701 /* WrapStoredPropertiesMacro.swift */,
 				BD2CDEEC298B4A650015A701 /* DictionaryIndirectionMacro.swift */,
 				3175781C298DBC8700D79290 /* NewTypeMacro.swift */,
+				BD7324B729989178009C6A08 /* AddCompletionHandlerMacro.swift */,
 			);
 			path = MacroExamplesPlugin;
 			sourceTree = "<group>";
@@ -384,6 +387,7 @@
 				BD2CDEE9298B24040015A701 /* Diagnostics.swift in Sources */,
 				BD2CDEED298B4A650015A701 /* DictionaryIndirectionMacro.swift in Sources */,
 				BD752BE7294D461B00D00A2E /* FontLiteralMacro.swift in Sources */,
+				BD7324B829989178009C6A08 /* AddCompletionHandlerMacro.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

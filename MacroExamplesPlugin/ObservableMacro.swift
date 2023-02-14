@@ -91,7 +91,7 @@ public struct ObservableMacro: MemberMacro, MemberAttributeMacro {
   public static func expansion(
     of node: AttributeSyntax,
     attachedTo declaration: some DeclGroupSyntax,
-    providingAttributesFor member: DeclSyntax,
+    providingAttributesFor member: some DeclSyntaxProtocol,
     in context: some MacroExpansionContext
   ) throws -> [SwiftSyntax.AttributeSyntax] {
     guard member.isObservableStoredProperty else {

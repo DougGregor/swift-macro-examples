@@ -10,6 +10,7 @@
 		3175781D298DBC8700D79290 /* NewTypeMacro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3175781C298DBC8700D79290 /* NewTypeMacro.swift */; };
 		3175781F298DBFA100D79290 /* NewTypePluginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3175781E298DBFA100D79290 /* NewTypePluginTests.swift */; };
 		31757821298DC4AF00D79290 /* NewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31757820298DC4AF00D79290 /* NewType.swift */; };
+		371A6719299C241F00E74A8A /* CaseDetectionMacro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371A6718299C241F00E74A8A /* CaseDetectionMacro.swift */; };
 		BD2CDEE9298B24040015A701 /* Diagnostics.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2CDEE8298B24040015A701 /* Diagnostics.swift */; };
 		BD2CDEEB298B34730015A701 /* WrapStoredPropertiesMacro.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2CDEEA298B34730015A701 /* WrapStoredPropertiesMacro.swift */; };
 		BD2CDEED298B4A650015A701 /* DictionaryIndirectionMacro.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2CDEEC298B4A650015A701 /* DictionaryIndirectionMacro.swift */; };
@@ -73,6 +74,7 @@
 		3175781C298DBC8700D79290 /* NewTypeMacro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTypeMacro.swift; sourceTree = "<group>"; };
 		3175781E298DBFA100D79290 /* NewTypePluginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTypePluginTests.swift; sourceTree = "<group>"; };
 		31757820298DC4AF00D79290 /* NewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewType.swift; sourceTree = "<group>"; };
+		371A6718299C241F00E74A8A /* CaseDetectionMacro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseDetectionMacro.swift; sourceTree = "<group>"; };
 		BD2CDEE8298B24040015A701 /* Diagnostics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diagnostics.swift; sourceTree = "<group>"; };
 		BD2CDEEA298B34730015A701 /* WrapStoredPropertiesMacro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrapStoredPropertiesMacro.swift; sourceTree = "<group>"; };
 		BD2CDEEC298B4A650015A701 /* DictionaryIndirectionMacro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryIndirectionMacro.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				BD2CDEEC298B4A650015A701 /* DictionaryIndirectionMacro.swift */,
 				3175781C298DBC8700D79290 /* NewTypeMacro.swift */,
 				BD7324B729989178009C6A08 /* AddCompletionHandlerMacro.swift */,
+				371A6718299C241F00E74A8A /* CaseDetectionMacro.swift */,
 			);
 			path = MacroExamplesPlugin;
 			sourceTree = "<group>";
@@ -380,6 +383,7 @@
 			files = (
 				BD841F82294CE1F600DA4D81 /* AddBlocker.swift in Sources */,
 				BD2CDEEB298B34730015A701 /* WrapStoredPropertiesMacro.swift in Sources */,
+				371A6719299C241F00E74A8A /* CaseDetectionMacro.swift in Sources */,
 				BD752BE5294D3BEC00D00A2E /* WarningMacro.swift in Sources */,
 				3175781D298DBC8700D79290 /* NewTypeMacro.swift in Sources */,
 				BDF5AFF82947E95C00FA119B /* StringifyMacro.swift in Sources */,

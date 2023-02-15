@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D682A92299CE4C6006F9F78 /* AddAsyncMacro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D682A91299CE4C6006F9F78 /* AddAsyncMacro.swift */; };
 		3175781D298DBC8700D79290 /* NewTypeMacro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3175781C298DBC8700D79290 /* NewTypeMacro.swift */; };
 		3175781F298DBFA100D79290 /* NewTypePluginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3175781E298DBFA100D79290 /* NewTypePluginTests.swift */; };
 		31757821298DC4AF00D79290 /* NewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31757820298DC4AF00D79290 /* NewType.swift */; };
@@ -71,6 +72,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1D682A91299CE4C6006F9F78 /* AddAsyncMacro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAsyncMacro.swift; sourceTree = "<group>"; };
 		3175781C298DBC8700D79290 /* NewTypeMacro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTypeMacro.swift; sourceTree = "<group>"; };
 		3175781E298DBFA100D79290 /* NewTypePluginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTypePluginTests.swift; sourceTree = "<group>"; };
 		31757820298DC4AF00D79290 /* NewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewType.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 				3175781C298DBC8700D79290 /* NewTypeMacro.swift */,
 				BD7324B729989178009C6A08 /* AddCompletionHandlerMacro.swift */,
 				371A6718299C241F00E74A8A /* CaseDetectionMacro.swift */,
+				1D682A91299CE4C6006F9F78 /* AddAsyncMacro.swift */,
 			);
 			path = MacroExamplesPlugin;
 			sourceTree = "<group>";
@@ -392,6 +395,7 @@
 				BD2CDEED298B4A650015A701 /* DictionaryIndirectionMacro.swift in Sources */,
 				BD752BE7294D461B00D00A2E /* FontLiteralMacro.swift in Sources */,
 				BD7324B829989178009C6A08 /* AddCompletionHandlerMacro.swift in Sources */,
+				1D682A92299CE4C6006F9F78 /* AddAsyncMacro.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

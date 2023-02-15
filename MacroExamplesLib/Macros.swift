@@ -92,3 +92,6 @@ public macro ObservableProperty() = #externalMacro(module: "MacroExamplesPlugin"
 @attached(peer)
 public macro addCompletionHandler() =
     #externalMacro(module: "MacroExamplesPlugin", type: "AddCompletionHandlerMacro")
+
+@attached(member)
+public macro CaseDetection() = #externalMacro(module: "MacroExamplesPlugin", type: "CaseDetectionMacro")

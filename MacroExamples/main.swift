@@ -44,6 +44,18 @@ struct Point {
   var y: Int = 2
 }
 
+@CaseDetection
+enum Pet {
+  case dog
+  case cat(curious: Bool)
+  case parrot
+  case snake
+}
+
+let pet: Pet = .cat(curious: true)
+print("Pet is dog: \(pet.isDog)"
+print("Pet is cat: \(pet.isCat)")
+
 var point = Point()
 print("Point storage begins as an empty dictionary: \(point)")
 print("Default value for point.x: \(point.x)")

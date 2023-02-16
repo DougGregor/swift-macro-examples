@@ -48,6 +48,9 @@ public struct AddAsyncMacro: PeerMacro {
     
     let returnType = completionHandlerParameter.arguments.first?.type
     
+    let isResultReturn = returnType?.children(viewMode: .all).first?.description == "Result"
+    let successReturnType = isResultReturn ? returnType!.as(SimpleTypeIdentifierSyntax.self)!.genericArgumentClause?.arguments.first!.argumentType : returnType
+    
     // Remove completionHandler and comma from the previous parameter
     var newParameterList = funcDecl.signature.input.parameterList.removingLast()
     let newParameterListLastParameter = newParameterList.last!
@@ -82,13 +85,25 @@ public struct AddAsyncMacro: PeerMacro {
       
       return "\(argName.text)"
     }
+    
+    let switchBody: ExprSyntax =
+    """
+      switch returnValue {
+      case .success(let value):
+          continuation.resume(returning: value)
+      case .failure(let error):
+          continuation.resume(throwing: error)
+      }
+    """
 
     let newBody: ExprSyntax =
       """
       
-        await withCheckedContinuation { continuation in
+        \(isResultReturn ? "try await withCheckedThrowingContinuation { continuation in" : "await withCheckedContinuation { continuation in")
           \(funcDecl.identifier)(\(raw: callArguments.joined(separator: ", "))) { \(returnType != nil ? "returnValue in" : "")
-            continuation.resume(returning: \(returnType != nil ? "returnValue" : "()"))
+        
+          \(isResultReturn ? switchBody : "continuation.resume(returning: \(returnType != nil ? "returnValue" : "()"))")
+            
           }
         }
       
@@ -101,9 +116,9 @@ public struct AddAsyncMacro: PeerMacro {
          funcDecl.signature
           .with(
             \.effectSpecifiers,
-             DeclEffectSpecifiersSyntax(leadingTrivia: .space, asyncSpecifier: "async")  // add async
+             DeclEffectSpecifiersSyntax(leadingTrivia: .space, asyncSpecifier: "async", throwsSpecifier: isResultReturn ? " throws" : nil)  // add async
           )
-          .with(\.output, returnType != nil ? ReturnClauseSyntax(leadingTrivia: .space, returnType: returnType!.with(\.leadingTrivia, .space)) : nil)  // add result type
+          .with(\.output, successReturnType != nil ? ReturnClauseSyntax(leadingTrivia: .space, returnType: successReturnType!.with(\.leadingTrivia, .space)) : nil)  // add result type
           .with(
             \.input,
              funcDecl.signature.input.with(\.parameterList, newParameterList) // drop completion handler

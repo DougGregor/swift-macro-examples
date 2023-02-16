@@ -118,20 +118,22 @@ struct MyStruct {
   }
   
   @addAsync
-  func c(a: Int, for b: String, _ value: Double, completionBlock: @escaping (String) -> Void) -> Void {
-    completionBlock("a: \(a), b: \(b), value: \(value)")
+  func c(a: Int, for b: String, _ value: Double, completionBlock: @escaping (Result<String, Error>) -> Void) -> Void {
+    completionBlock(.success("a: \(a), b: \(b), value: \(value)"))
   }
   
   @addAsync
-  func d(a: Int, for b: String, _ value: Double, completionBlock: @escaping () -> Void) -> Void {
-    completionBlock()
+  func d(a: Int, for b: String, _ value: Double, completionBlock: @escaping (Bool) -> Void) -> Void {
+    completionBlock(true)
   }
+  
+  
 }
 
 
 Task {
   let myStruct = MyStruct()
-  let a = await myStruct.c(a: 5, for: "Test", 20)
+  let a = try? await myStruct.c(a: 5, for: "Test", 20)
   print(a)
   
   await myStruct.d(a: 10, for: "value", 40)

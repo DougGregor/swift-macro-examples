@@ -1,8 +1,15 @@
-//
-//  CodableKey.swift
-//  MacroExamplesPlugin
-//
-//  Created by Bruno Mazzo on 16/2/2023.
-//
+import SwiftSyntax
+import SwiftSyntaxMacros
 
-import Foundation
+public struct CodableKey: MemberMacro {
+  public static func expansion(
+    of node: AttributeSyntax,
+    providingMembersOf declaration: some DeclGroupSyntax,
+    in context: some MacroExpansionContext
+  ) throws -> [DeclSyntax] {
+      // Does nothing, used only to decorate members with data
+      return []
+  }
+
+
+}

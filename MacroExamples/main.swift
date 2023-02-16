@@ -1,5 +1,6 @@
 
 import MacroExamplesLib
+import Foundation
 
 let x = 1
 let y = 2
@@ -126,15 +127,25 @@ struct MyStruct {
   func d(a: Int, for b: String, _ value: Double, completionBlock: @escaping (Bool) -> Void) -> Void {
     completionBlock(true)
   }
+}
+
+@CustomCodable
+struct CustomCodableString: Codable {
   
+  @CodableKey(name: "OtherName")
+  var propertyWithOtherName: String
   
+  var propertyWithSameName: Bool
+ 
+  func randomFunction() {
+    
+  }
 }
 
 
 Task {
   let myStruct = MyStruct()
   let a = try? await myStruct.c(a: 5, for: "Test", 20)
-  print(a)
   
   await myStruct.d(a: 10, for: "value", 40)
 }
@@ -142,3 +153,16 @@ Task {
 MyStruct().f(a: 1, for: "hello", 3.14159) { result in
   print("Eventually received \(result + "!")")
 }
+
+
+let json = """
+{
+  "OtherName": "Name",
+  "propertyWithSameName": true
+}
+
+""".data(using: .utf8)!
+
+let jsonDecoder = JSONDecoder()
+let product = try jsonDecoder.decode(CustomCodableString.self, from: json)
+print(product.propertyWithOtherName)

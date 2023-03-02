@@ -167,8 +167,28 @@ let jsonDecoder = JSONDecoder()
 let product = try jsonDecoder.decode(CustomCodableString.self, from: json)
 print(product.propertyWithOtherName)
 
-@OptionSet
+
 struct ShippingOptions {
+  typealias RawValue = Int
+  
+  var rawValue: RawValue
+  
+  init() { self.rawValue = 0 }
+  
+  init(rawValue: RawValue) { self.rawValue = rawValue }
+  
+  static let nextDay: Self =
+  Self(rawValue: 1 << Options.nextDay.rawValue)
+  
+  static let secondDay: Self =
+  Self(rawValue: 1 << Options.secondDay.rawValue)
+  
+  static let priority: Self =
+  Self(rawValue: 1 << Options.priority.rawValue)
+  
+  static let standard: Self =
+  Self(rawValue: 1 << Options.standard.rawValue)
+  
   private enum Options: Int {
     case nextDay
     case secondDay
@@ -179,3 +199,6 @@ struct ShippingOptions {
   static let express: ShippingOptions = [.nextDay, .secondDay]
   static let all: ShippingOptions = [.express, .priority, .standard]
 }
+
+extension ShippingOptions : OptionSet  {}
+

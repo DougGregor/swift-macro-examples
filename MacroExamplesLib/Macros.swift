@@ -99,3 +99,10 @@ public macro addAsync() =
 
 @attached(member)
 public macro CaseDetection() = #externalMacro(module: "MacroExamplesPlugin", type: "CaseDetectionMacro")
+
+
+@attached(member)
+public macro CodableKey(name: String) = #externalMacro(module: "MacroExamplesPlugin", type: "CodableKey")
+
+@attached(member)
+public macro CustomCodable() = #externalMacro(module: "MacroExamplesPlugin", type: "CustomCodable")

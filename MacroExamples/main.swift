@@ -1,5 +1,6 @@
 
 import MacroExamplesLib
+import Foundation
 
 let x = 1
 let y = 2
@@ -118,21 +119,33 @@ struct MyStruct {
   }
   
   @addAsync
-  func c(a: Int, for b: String, _ value: Double, completionBlock: @escaping (String) -> Void) -> Void {
-    completionBlock("a: \(a), b: \(b), value: \(value)")
+  func c(a: Int, for b: String, _ value: Double, completionBlock: @escaping (Result<String, Error>) -> Void) -> Void {
+    completionBlock(.success("a: \(a), b: \(b), value: \(value)"))
   }
   
   @addAsync
-  func d(a: Int, for b: String, _ value: Double, completionBlock: @escaping () -> Void) -> Void {
-    completionBlock()
+  func d(a: Int, for b: String, _ value: Double, completionBlock: @escaping (Bool) -> Void) -> Void {
+    completionBlock(true)
+  }
+}
+
+@CustomCodable
+struct CustomCodableString: Codable {
+  
+  @CodableKey(name: "OtherName")
+  var propertyWithOtherName: String
+  
+  var propertyWithSameName: Bool
+ 
+  func randomFunction() {
+    
   }
 }
 
 
 Task {
   let myStruct = MyStruct()
-  let a = await myStruct.c(a: 5, for: "Test", 20)
-  print(a)
+  let a = try? await myStruct.c(a: 5, for: "Test", 20)
   
   await myStruct.d(a: 10, for: "value", 40)
 }
@@ -140,3 +153,16 @@ Task {
 MyStruct().f(a: 1, for: "hello", 3.14159) { result in
   print("Eventually received \(result + "!")")
 }
+
+
+let json = """
+{
+  "OtherName": "Name",
+  "propertyWithSameName": true
+}
+
+""".data(using: .utf8)!
+
+let jsonDecoder = JSONDecoder()
+let product = try jsonDecoder.decode(CustomCodableString.self, from: json)
+print(product.propertyWithOtherName)

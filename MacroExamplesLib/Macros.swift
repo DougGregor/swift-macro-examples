@@ -133,4 +133,4 @@ public macro CustomCodable() = #externalMacro(module: "MacroExamplesPlugin", typ
 ///     }
 @attached(member)
 @attached(conformance)
-public macro OptionSet() = #externalMacro(module: "MacroExamplesPlugin", type: "OptionSetMacro")
+public macro OptionSet<RawType>() = #externalMacro(module: "MacroExamplesPlugin", type: "OptionSetMacro")

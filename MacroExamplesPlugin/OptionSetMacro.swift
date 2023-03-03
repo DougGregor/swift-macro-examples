@@ -7,7 +7,7 @@ enum OptionSetMacroDiagnostic {
   case requiresStruct
   case requiresStringLiteral(String)
   case requiresOptionsEnum(String)
-  case requiresOptionsEnumRawValue(String)
+  case requiresOptionsEnumRawType
 }
 
 extension OptionSetMacroDiagnostic: DiagnosticMessage {
@@ -26,8 +26,8 @@ extension OptionSetMacroDiagnostic: DiagnosticMessage {
     case .requiresOptionsEnum(let name):
       return "'OptionSet' macro requires nested options enum '\(name)'"
 
-    case .requiresOptionsEnumRawValue(let name):
-      return "'\(name)' enum requires an integer raw value type"
+    case .requiresOptionsEnumRawType:
+      return "'OptionSet' macro requires a raw type"
     }
   }
 
@@ -106,9 +106,10 @@ public struct OptionSetMacro {
       return nil
     }
 
-    // Retrieve the raw type of the enum.
-    guard let rawType = optionsEnum.inheritanceClause?.inheritedTypeCollection.first?.typeName else {
-      context.diagnose(OptionSetMacroDiagnostic.requiresOptionsEnumRawValue(optionsEnumName).diagnose(at: optionsEnum))
+    // Retrieve the raw type from the attribute.
+    guard let genericArgs = attribute.attributeName.as(SimpleTypeIdentifierSyntax.self)?.genericArgumentClause,
+          let rawType = genericArgs.arguments.first?.argumentType else {
+      context.diagnose(OptionSetMacroDiagnostic.requiresOptionsEnumRawType.diagnose(at: attribute))
       return nil
     }
 

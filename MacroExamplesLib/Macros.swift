@@ -116,7 +116,7 @@ public macro CustomCodable() = #externalMacro(module: "MacroExamplesPlugin", typ
 ///    along with the necessary `RawType` typealias and initializers to satisfy
 ///    the `OptionSet` protocol.
 ///   2. Introducing static properties for each of the cases within the `Options`
-///    enum, of the type of the
+///    enum, of the type of the struct.
 ///
 /// The `Options` enum must have a raw value, where its case elements
 /// each indicate a different option in the resulting option set. For example,

@@ -166,3 +166,16 @@ let json = """
 let jsonDecoder = JSONDecoder()
 let product = try jsonDecoder.decode(CustomCodableString.self, from: json)
 print(product.propertyWithOtherName)
+
+@OptionSet
+struct ShippingOptions {
+  private enum Options: Int {
+    case nextDay
+    case secondDay
+    case priority
+    case standard
+  }
+
+  static let express: ShippingOptions = [.nextDay, .secondDay]
+  static let all: ShippingOptions = [.express, .priority, .standard]
+}

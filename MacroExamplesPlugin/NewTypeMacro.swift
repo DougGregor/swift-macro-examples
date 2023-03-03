@@ -40,7 +40,7 @@ extension NewTypeMacro: MemberMacro {
 }
 
 extension DeclModifierSyntax {
-  fileprivate var isNeededAccessLevelModifier: Bool {
+  var isNeededAccessLevelModifier: Bool {
     switch self.name.tokenKind {
     case .keyword(.public): return true
     default: return false
@@ -50,7 +50,7 @@ extension DeclModifierSyntax {
 
 extension SyntaxStringInterpolation {
   // It would be nice for SwiftSyntaxBuilder to provide this out-of-the-box.
-  fileprivate mutating func appendInterpolation<Node: SyntaxProtocol>(_ node: Node?) {
+  mutating func appendInterpolation<Node: SyntaxProtocol>(_ node: Node?) {
     if let node {
       appendInterpolation(node)
     }

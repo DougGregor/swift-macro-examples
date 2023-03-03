@@ -17,6 +17,7 @@
 		BD2CDEE9298B24040015A701 /* Diagnostics.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2CDEE8298B24040015A701 /* Diagnostics.swift */; };
 		BD2CDEEB298B34730015A701 /* WrapStoredPropertiesMacro.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2CDEEA298B34730015A701 /* WrapStoredPropertiesMacro.swift */; };
 		BD2CDEED298B4A650015A701 /* DictionaryIndirectionMacro.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2CDEEC298B4A650015A701 /* DictionaryIndirectionMacro.swift */; };
+		BD48319329AFF87200F3123A /* OptionSetMacro.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD48319229AFF87200F3123A /* OptionSetMacro.swift */; };
 		BD7324B829989178009C6A08 /* AddCompletionHandlerMacro.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7324B729989178009C6A08 /* AddCompletionHandlerMacro.swift */; };
 		BD752BE5294D3BEC00D00A2E /* WarningMacro.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD752BE4294D3BEC00D00A2E /* WarningMacro.swift */; };
 		BD752BE7294D461B00D00A2E /* FontLiteralMacro.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD752BE6294D461B00D00A2E /* FontLiteralMacro.swift */; };
@@ -85,6 +86,7 @@
 		BD2CDEEA298B34730015A701 /* WrapStoredPropertiesMacro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrapStoredPropertiesMacro.swift; sourceTree = "<group>"; };
 		BD2CDEEC298B4A650015A701 /* DictionaryIndirectionMacro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryIndirectionMacro.swift; sourceTree = "<group>"; };
 		BD3FE05C296611F200426C82 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		BD48319229AFF87200F3123A /* OptionSetMacro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionSetMacro.swift; sourceTree = "<group>"; };
 		BD7324B729989178009C6A08 /* AddCompletionHandlerMacro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCompletionHandlerMacro.swift; sourceTree = "<group>"; };
 		BD752BE4294D3BEC00D00A2E /* WarningMacro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningMacro.swift; sourceTree = "<group>"; };
 		BD752BE6294D461B00D00A2E /* FontLiteralMacro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontLiteralMacro.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 				1D682A91299CE4C6006F9F78 /* AddAsyncMacro.swift */,
 				1D682A93299E2FFB006F9F78 /* CodableKey.swift */,
 				1D682A95299E3313006F9F78 /* CustomCodable.swift */,
+				BD48319229AFF87200F3123A /* OptionSetMacro.swift */,
 			);
 			path = MacroExamplesPlugin;
 			sourceTree = "<group>";
@@ -403,6 +406,7 @@
 				BD2CDEED298B4A650015A701 /* DictionaryIndirectionMacro.swift in Sources */,
 				BD752BE7294D461B00D00A2E /* FontLiteralMacro.swift in Sources */,
 				BD7324B829989178009C6A08 /* AddCompletionHandlerMacro.swift in Sources */,
+				BD48319329AFF87200F3123A /* OptionSetMacro.swift in Sources */,
 				1D682A92299CE4C6006F9F78 /* AddAsyncMacro.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -536,6 +540,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -589,6 +594,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
 			name = Release;
@@ -599,6 +605,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				OTHER_SWIFT_FLAGS = "-Xfrontend -enable-experimental-feature -Xfrontend Macros -Xfrontend -load-plugin-library -Xfrontend ${BUILD_DIR}/${CONFIGURATION}/libMacroExamplesPlugin.dylib -Xfrontend -dump-macro-expansions";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"SWIFT_OPTIMIZATION_LEVEL[arch=*]" = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;

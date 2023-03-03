@@ -30,7 +30,6 @@ extension DictionaryStorageMacro: AccessorMacro {
       throw CustomError.message("stored property must have an initializer")
     }
 
-    print(varDecl.recursiveDescription)
     return [
       """
 

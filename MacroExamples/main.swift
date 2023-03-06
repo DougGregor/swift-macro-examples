@@ -180,3 +180,15 @@ struct ShippingOptions {
   static let express: ShippingOptions = [.nextDay, .secondDay]
   static let all: ShippingOptions = [.express, .priority, .standard]
 }
+
+
+// `@MetaEnum` adds a nested enum called `Meta` with the same cases, but no
+// associated values/payloads. Handy for e.g. describing a schema.
+@MetaEnum enum Value {
+  case integer(Int)
+  case text(String)
+  case boolean(Bool)
+  case null
+}
+
+print(Value.Meta(.integer(42)) == .integer)

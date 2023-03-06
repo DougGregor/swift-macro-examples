@@ -89,11 +89,11 @@ public macro Observable() = #externalMacro(module: "MacroExamplesPlugin", type: 
 @attached(accessor)
 public macro ObservableProperty() = #externalMacro(module: "MacroExamplesPlugin", type: "ObservablePropertyMacro")
 
-@attached(peer)
+@attached(peer, names: overloaded)
 public macro addCompletionHandler() =
     #externalMacro(module: "MacroExamplesPlugin", type: "AddCompletionHandlerMacro")
 
-@attached(peer)
+@attached(peer, names: overloaded)
 public macro addAsync() =
     #externalMacro(module: "MacroExamplesPlugin", type: "AddAsyncMacro")
 
@@ -133,6 +133,6 @@ public macro CustomCodable() = #externalMacro(module: "MacroExamplesPlugin", typ
 ///         case standard
 ///       }
 ///     }
-@attached(member)
+@attached(member, names: arbitrary)
 @attached(conformance)
 public macro OptionSet<RawType>() = #externalMacro(module: "MacroExamplesPlugin", type: "OptionSetMacro")

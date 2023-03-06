@@ -14,6 +14,8 @@
 		3175781F298DBFA100D79290 /* NewTypePluginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3175781E298DBFA100D79290 /* NewTypePluginTests.swift */; };
 		31757821298DC4AF00D79290 /* NewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31757820298DC4AF00D79290 /* NewType.swift */; };
 		371A6719299C241F00E74A8A /* CaseDetectionMacro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371A6718299C241F00E74A8A /* CaseDetectionMacro.swift */; };
+		88E54A5229B5475400252D99 /* MetaEnumMacro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E54A5129B5475400252D99 /* MetaEnumMacro.swift */; };
+		88E54A5429B5520A00252D99 /* MetaEnumMacroTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E54A5329B5520A00252D99 /* MetaEnumMacroTests.swift */; };
 		BD2CDEE9298B24040015A701 /* Diagnostics.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2CDEE8298B24040015A701 /* Diagnostics.swift */; };
 		BD2CDEEB298B34730015A701 /* WrapStoredPropertiesMacro.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2CDEEA298B34730015A701 /* WrapStoredPropertiesMacro.swift */; };
 		BD2CDEED298B4A650015A701 /* DictionaryIndirectionMacro.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2CDEEC298B4A650015A701 /* DictionaryIndirectionMacro.swift */; };
@@ -82,6 +84,8 @@
 		3175781E298DBFA100D79290 /* NewTypePluginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTypePluginTests.swift; sourceTree = "<group>"; };
 		31757820298DC4AF00D79290 /* NewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewType.swift; sourceTree = "<group>"; };
 		371A6718299C241F00E74A8A /* CaseDetectionMacro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseDetectionMacro.swift; sourceTree = "<group>"; };
+		88E54A5129B5475400252D99 /* MetaEnumMacro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaEnumMacro.swift; sourceTree = "<group>"; };
+		88E54A5329B5520A00252D99 /* MetaEnumMacroTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaEnumMacroTests.swift; sourceTree = "<group>"; };
 		BD2CDEE8298B24040015A701 /* Diagnostics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diagnostics.swift; sourceTree = "<group>"; };
 		BD2CDEEA298B34730015A701 /* WrapStoredPropertiesMacro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrapStoredPropertiesMacro.swift; sourceTree = "<group>"; };
 		BD2CDEEC298B4A650015A701 /* DictionaryIndirectionMacro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryIndirectionMacro.swift; sourceTree = "<group>"; };
@@ -154,6 +158,7 @@
 				1D682A93299E2FFB006F9F78 /* CodableKey.swift */,
 				1D682A95299E3313006F9F78 /* CustomCodable.swift */,
 				BD48319229AFF87200F3123A /* OptionSetMacro.swift */,
+				88E54A5129B5475400252D99 /* MetaEnumMacro.swift */,
 			);
 			path = MacroExamplesPlugin;
 			sourceTree = "<group>";
@@ -212,6 +217,7 @@
 			children = (
 				BDFB14B42948484000708DA6 /* MacroExamplesPluginTest.swift */,
 				3175781E298DBFA100D79290 /* NewTypePluginTests.swift */,
+				88E54A5329B5520A00252D99 /* MetaEnumMacroTests.swift */,
 			);
 			path = MacroExamplesPluginTest;
 			sourceTree = "<group>";
@@ -401,6 +407,7 @@
 				3175781D298DBC8700D79290 /* NewTypeMacro.swift in Sources */,
 				BDF5AFF82947E95C00FA119B /* StringifyMacro.swift in Sources */,
 				EC21BDEB298D9F9900D585C6 /* ObservableMacro.swift in Sources */,
+				88E54A5229B5475400252D99 /* MetaEnumMacro.swift in Sources */,
 				BD2CDEE9298B24040015A701 /* Diagnostics.swift in Sources */,
 				1D682A96299E3313006F9F78 /* CustomCodable.swift in Sources */,
 				BD2CDEED298B4A650015A701 /* DictionaryIndirectionMacro.swift in Sources */,
@@ -417,6 +424,7 @@
 			files = (
 				BDFB14B52948484000708DA6 /* MacroExamplesPluginTest.swift in Sources */,
 				3175781F298DBFA100D79290 /* NewTypePluginTests.swift in Sources */,
+				88E54A5429B5520A00252D99 /* MetaEnumMacroTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

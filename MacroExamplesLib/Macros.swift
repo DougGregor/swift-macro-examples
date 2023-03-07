@@ -83,7 +83,6 @@ public struct ObservationRegistrar<Subject: Observable> {
 }
 
 @attached(member, names: named(Storage), named(_storage), named(_registrar), named(addObserver), named(removeObserver), named(withTransaction))
-@attached(memberAttribute)
 public macro Observable() = #externalMacro(module: "MacroExamplesPlugin", type: "ObservableMacro")
 
 @attached(accessor)
@@ -106,7 +105,7 @@ public macro MetaEnum() = #externalMacro(module: "MacroExamplesPlugin", type: "M
 @attached(member)
 public macro CodableKey(name: String) = #externalMacro(module: "MacroExamplesPlugin", type: "CodableKey")
 
-@attached(member, names: named(CodingKeys))
+@attached(member, names: arbitrary)
 public macro CustomCodable() = #externalMacro(module: "MacroExamplesPlugin", type: "CustomCodable")
 
 /// Create an option set from a struct that contains a nested `Options` enum.
@@ -116,7 +115,8 @@ public macro CustomCodable() = #externalMacro(module: "MacroExamplesPlugin", typ
 /// `OptionSet` by
 ///   1. Introducing a `rawValue` stored property to track which options are set,
 ///    along with the necessary `RawType` typealias and initializers to satisfy
-///    the `OptionSet` protocol.
+///    the `OptionSet` protocol. The raw type is specified after `@OptionSet`,
+///    e.g., `@OptionSet<UInt8>`.
 ///   2. Introducing static properties for each of the cases within the `Options`
 ///    enum, of the type of the struct.
 ///
@@ -124,7 +124,7 @@ public macro CustomCodable() = #externalMacro(module: "MacroExamplesPlugin", typ
 /// each indicate a different option in the resulting option set. For example,
 /// the struct and its nested `Options` enum could look like this:
 ///
-///     @MyOptionSet
+///     @MyOptionSet<UInt8>
 ///     struct ShippingOptions {
 ///       private enum Options: Int {
 ///         case nextDay
@@ -133,6 +133,11 @@ public macro CustomCodable() = #externalMacro(module: "MacroExamplesPlugin", typ
 ///         case standard
 ///       }
 ///     }
-@attached(member, names: arbitrary)
+@attached(member, names: named(RawValue), named(rawValue), named(`init`))
 @attached(conformance)
+@attached(memberAttribute)
 public macro MyOptionSet<RawType>() = #externalMacro(module: "MacroExamplesPlugin", type: "OptionSetMacro")
+
+
+@attached(accessor)
+public macro OptionSetItem(bit: Int) = #externalMacro(module: "MacroExamplesPlugin", type: "OptionSetItemMacro")

@@ -17,15 +17,11 @@ final class NewTypePluginTests: XCTestCase {
       }
       """#
 
-    // print(sf.recursiveDescription)
-
     let context = BasicMacroExpansionContext(
       sourceFiles: [sf: .init(moduleName: "MyModule", fullFilePath: "test.swift")]
     )
 
     let transformed = sf.expand(macros: testMacros, in: context)
-
-    // print(transformed.recursiveDescription)
 
     XCTAssertEqual(
       transformed.description,

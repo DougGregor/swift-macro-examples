@@ -8,6 +8,7 @@ enum OptionSetMacroDiagnostic {
   case requiresStringLiteral(String)
   case requiresOptionsEnum(String)
   case requiresOptionsEnumRawType
+  case itemInMacroExpansion
 }
 
 extension OptionSetMacroDiagnostic: DiagnosticMessage {
@@ -28,6 +29,9 @@ extension OptionSetMacroDiagnostic: DiagnosticMessage {
 
     case .requiresOptionsEnumRawType:
       return "'OptionSet' macro requires a raw type"
+
+    case .itemInMacroExpansion:
+      return "'OptionSet' item cannot occur as a result of macro expansion"
     }
   }
 
@@ -37,15 +41,6 @@ extension OptionSetMacroDiagnostic: DiagnosticMessage {
     MessageID(domain: "Swift", id: "OptionSet.\(self)")
   }
 }
-
-
-/// The label used for the OptionSet macro argument that provides the name of
-/// the nested options enum.
-private let optionsEnumNameArgumentLabel = "optionsName"
-
-/// The default name used for the nested "Options" enum. This should
-/// eventually be overridable.
-private let defaultOptionsEnumName = "Options"
 
 extension TupleExprElementListSyntax {
   /// Retrieve the first element with the given label.
@@ -69,40 +64,10 @@ public struct OptionSetMacro {
     of attribute: AttributeSyntax,
     attachedTo decl: some DeclGroupSyntax,
     in context: some MacroExpansionContext
-  ) -> (StructDeclSyntax, EnumDeclSyntax, TypeSyntax)? {
-    // Determine the name of the options enum.
-    let optionsEnumName: String
-    if case let .argumentList(arguments) = attribute.argument,
-       let optionEnumNameArg = arguments.first(labeled: optionsEnumNameArgumentLabel) {
-      // We have a options name; make sure it is a string literal.
-      guard let stringLiteral = optionEnumNameArg.expression.as(StringLiteralExprSyntax.self),
-         stringLiteral.segments.count == 1,
-          case let .stringSegment(optionsEnumNameString)? = stringLiteral.segments.first else {
-        context.diagnose(OptionSetMacroDiagnostic.requiresStringLiteral(optionsEnumNameArgumentLabel).diagnose(at: optionEnumNameArg.expression))
-        return nil
-      }
-
-      optionsEnumName = optionsEnumNameString.content.text
-    } else {
-      optionsEnumName = defaultOptionsEnumName
-    }
-
+  ) -> (StructDeclSyntax, TypeSyntax)? {
     // Only apply to structs.
     guard let structDecl = decl.as(StructDeclSyntax.self) else {
       context.diagnose(OptionSetMacroDiagnostic.requiresStruct.diagnose(at: decl))
-      return nil
-    }
-
-    // Find the option enum within the struct.
-    guard let optionsEnum = decl.members.members.compactMap({ member in
-      if let enumDecl = member.decl.as(EnumDeclSyntax.self),
-         enumDecl.identifier.text == optionsEnumName {
-        return enumDecl
-      }
-
-      return nil
-    }).first else {
-      context.diagnose(OptionSetMacroDiagnostic.requiresOptionsEnum(optionsEnumName).diagnose(at: decl))
       return nil
     }
 
@@ -114,7 +79,120 @@ public struct OptionSetMacro {
     }
 
 
-    return (structDecl, optionsEnum, rawType)
+    return (structDecl, rawType)
+  }
+}
+
+extension VariableDeclSyntax {
+  /// Determine whether this variable has the syntax of a stored property.
+  ///
+  /// This syntactic check cannot account for semantic adjustments due to,
+  /// e.g., accessor macros or property wrappers.
+  func getOptionSetItemCandidateName(structName: TokenSyntax) -> TokenSyntax? {
+    if bindings.count != 1 {
+      return nil
+    }
+
+    // Make sure this is a static variable.
+    guard let _ = modifiers?.first(where: {
+      return $0.name.tokenKind == .keyword(.static)
+    }) else {
+      return nil
+    }
+
+    // If there is an initializer, do nothing.
+    let binding = bindings.first!
+    if binding.initializer != nil {
+      return nil
+    }
+
+    // Make sure there are no non-observing getters.
+    switch binding.accessor {
+    case .none:
+      break
+
+    case .accessors(let node):
+      for accessor in node.accessors {
+        switch accessor.accessorKind.tokenKind {
+        case .keyword(.willSet), .keyword(.didSet):
+          // Observers can occur on a stored property.
+          break
+
+        default:
+          // Other accessors make it a computed property.
+          return nil
+        }
+      }
+      break
+
+    case .getter:
+      return nil
+
+    @unknown default:
+      return nil
+    }
+
+    // Make sure the type is either Self or the struct.
+    guard let type = binding.typeAnnotation?.type,
+          type.trimmed.description == "Self" ||
+            type.trimmed.description == structName.text else {
+      return nil
+    }
+
+    guard let identifier = binding.pattern.as(IdentifierPatternSyntax.self)?.identifier else {
+      return nil
+    }
+
+    return identifier
+  }
+}
+
+extension OptionSetMacro: MemberAttributeMacro {
+  public static func expansion(
+    of attribute: AttributeSyntax,
+    attachedTo declaration: some DeclGroupSyntax,
+    providingAttributesFor member: some DeclSyntaxProtocol,
+    in context: some MacroExpansionContext
+  ) throws -> [AttributeSyntax] {
+    // Decode the expansion arguments.
+    guard let (structDecl, _) = decodeExpansion(of: attribute, attachedTo: declaration, in: context) else {
+      return []
+    }
+
+    // Make sure this is an option set item candidate.
+    guard let property = member.as(VariableDeclSyntax.self),
+          let propertyName = property.getOptionSetItemCandidateName(structName: structDecl.identifier)
+    else {
+      return []
+    }
+
+    // Count how many item candidates occurred before this one.
+    var bit: Int = 0
+    var found: Bool = false
+    for otherMember in declaration.members.members {
+      // Only consider the option set item candidates.
+      guard let otherProperty = otherMember.decl.as(VariableDeclSyntax.self),
+            let otherPropertyName = otherProperty.getOptionSetItemCandidateName(structName: structDecl.identifier) else {
+        continue
+      }
+
+      if propertyName.text == otherPropertyName.text {
+        found = true
+        break
+      }
+
+      bit += 1
+    }
+
+    // If we did not found our member in the list, fail. This could happen
+    // if the item came from another macro expansion.
+    if !found {
+      context.diagnose(
+        OptionSetMacroDiagnostic.itemInMacroExpansion.diagnose(at: property))
+      return []
+    }
+
+    return ["@OptionSetItem(bit: \(literal: bit))"]
   }
 }
 
@@ -125,7 +203,7 @@ extension OptionSetMacro: ConformanceMacro {
     in context: some MacroExpansionContext
   ) throws -> [(TypeSyntax, GenericWhereClauseSyntax?)] {
     // Decode the expansion arguments.
-    guard let (structDecl, _, _) = decodeExpansion(of: attribute, attachedTo: decl, in: context) else {
+    guard let (structDecl, _) = decodeExpansion(of: attribute, attachedTo: decl, in: context) else {
       return []
     }
 
@@ -146,34 +224,18 @@ extension OptionSetMacro: MemberMacro {
     in context: some MacroExpansionContext
   ) throws -> [DeclSyntax] {
     // Decode the expansion arguments.
-    guard let (_, optionsEnum, rawType) = decodeExpansion(of: attribute, attachedTo: decl, in: context) else {
+    guard let (_, rawType) = decodeExpansion(of: attribute, attachedTo: decl, in: context) else {
       return []
-    }
-
-    // Find all of the case elements.
-    let caseElements = optionsEnum.members.members.flatMap { member in
-      guard let caseDecl = member.decl.as(EnumCaseDeclSyntax.self) else {
-        return Array<EnumCaseElementSyntax>()
-      }
-
-      return Array(caseDecl.elements)
     }
 
     // Dig out the access control keyword we need.
     let access = decl.modifiers?.first(where: \.isNeededAccessLevelModifier)
-
-    let staticVars = caseElements.map { (element) -> DeclSyntax in
-      """
-      \(access) static let \(element.identifier): Self =
-        Self(rawValue: 1 << \(optionsEnum.identifier).\(element.identifier).rawValue)
-      """
-    }
 
     return [
       "\(access)typealias RawValue = \(rawType)",
       "\(access)var rawValue: RawValue",
       "\(access)init() { self.rawValue = 0 }",
       "\(access)init(rawValue: RawValue) { self.rawValue = rawValue }",
-    ] + staticVars
+    ]
   }
 }

@@ -167,15 +167,12 @@ let jsonDecoder = JSONDecoder()
 let product = try jsonDecoder.decode(CustomCodableString.self, from: json)
 print(product.propertyWithOtherName)
 
-
-@OptionSet<UInt8>
+@MyOptionSet<UInt8>
 struct ShippingOptions {
-  private enum Options: Int {
-    case nextDay
-    case secondDay
-    case priority
-    case standard
-  }
+  static var nextDay: ShippingOptions
+  static var secondDay: ShippingOptions
+  static var priority: ShippingOptions
+  static var standard: ShippingOptions
 
   static let express: ShippingOptions = [.nextDay, .secondDay]
   static let all: ShippingOptions = [.express, .priority, .standard]

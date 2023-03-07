@@ -540,6 +540,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EXEC = "/Users/dgregor/Projects/swift/build/Ninja-RelWithDebInfoAssert/swift-macosx-x86_64/bin/swiftc";
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -594,6 +595,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EXEC = "/Users/dgregor/Projects/swift/build/Ninja-RelWithDebInfoAssert/swift-macosx-x86_64/bin/swiftc";
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};

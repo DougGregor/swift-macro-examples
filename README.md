@@ -8,7 +8,7 @@ There is an active effort to introduce [macros](https://forums.swift.org/t/a-pos
 
 Macros are an experimental feature, so you will need a custom Swift toolchain and some extra compiler flags. The Xcode project in this repository is a good starting point. To use it:
 
-1. Download a [development snapshot](https://www.swift.org/download/#snapshots) of the compiler from Swift.org from March 3, 2023 or later. At present, we only have these working on macOS, but are working to get other platforms working with other build systems.
+1. Download a [development snapshot](https://www.swift.org/download/#snapshots) of the compiler from Swift.org from March 6, 2023 or later. At present, we only have these working on macOS, but are working to get other platforms working with other build systems.
 2. Open the project `MacroExamples.xcodeproj` in Xcode.
 3. Go to the Xcode -> Toolchains menu and select the development toolchain you downloaded.
 4. Make sure the `MacroExamples` scheme is selected, then build and run! If the first build fails, build again--there's something funky going on with the dependencies.

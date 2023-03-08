@@ -168,7 +168,7 @@ let product = try jsonDecoder.decode(CustomCodableString.self, from: json)
 print(product.propertyWithOtherName)
 
 
-@OptionSet<UInt8>
+@MyOptionSet<UInt8>
 struct ShippingOptions {
   private enum Options: Int {
     case nextDay

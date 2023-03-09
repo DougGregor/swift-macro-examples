@@ -8,18 +8,25 @@ There is an active effort to introduce [macros](https://forums.swift.org/t/a-pos
 
 Macros are an experimental feature, so you will need a custom Swift toolchain and some extra compiler flags. The Xcode project in this repository is a good starting point. To use it:
 
-1. Download a [development snapshot](https://www.swift.org/download/#snapshots) of the compiler from Swift.org from March 6, 2023 or later. At present, we only have these working on macOS, but are working to get other platforms working with other build systems.
-2. Open the project `MacroExamples.xcodeproj` in Xcode.
-3. Go to the Xcode -> Toolchains menu and select the development toolchain you downloaded.
-4. Make sure the `MacroExamples` scheme is selected, then build and run! If the first build fails, build again--there's something funky going on with the dependencies.
+1. Download a [development snapshot](https://www.swift.org/download/#snapshots) of the compiler from Swift.org from March 8, 2023 or later. At present, we only have these working on macOS, but are working to get other platforms working with other build systems.
+2. To use SwiftPM to build the example project, use `swift build` from the toolchain, e.g.:
+   ```
+   /Library/Developer/Toolchains/swift-DEVELOPMENT-SNAPSHOT-2023-03-08-a.xctoolchain/usr/bin/swift build
+   ```
+3. To use Xcode to build the example project:
+  a. Open `MacroExamples.xcodeproj` in Xcode
+  b. Go to the Xcode -> Toolchains menu and select the development toolchain you downloaded.
+  c. Make sure the `MacroExamples` scheme is selected, then build and run! If the first build fails, build again--there's something funky going on with the dependencies. Then build again!
 
 The output of the `MacroExamples` program is pretty simple: it shows the result of running the example macro(s). The `main.swift` file is annotated to describe what the macros are actually doing.
 
 ## Example macros
 
 A number of macros in this package are designed to illustrate different capabilities of the macro system:
-* `#addBlocker`: demonstrates how a freestanding macro can emit compiler diagnostics based on the source code for the macro argument, by producing a warning for each use of the binary `+` operator with range highlighting and a Fix-It to replace the `+` with `-`.
-* `@DictionaryStorage`: demonstrates how an attached macro can have multiple roles that compose together to move all of the stored properties of a type into a separate dictionary.
+* `@AddCompletionHandler`: Adds a completion-handler form of an `async` function that creates a new task, calls the async function, and delivers the result to a completion handler. There's also the opposite form, `@AddAsync`, to add an `async` version for a synchronous function with a completion handler, automating the use of `withCheckedContinuation`.
+* `@CaseDetectionMacro`: Augments an enum with `isXXX` properties corresponding to each enum case, so one can easily test for a specific case, e.g., `filePath.isAbsolute`.
+* `@Observable`: Observation facilities for a property, using a combination of macro kinds.
+* `#addBlocker`: Demonstrates how a freestanding macro can emit compiler diagnostics based on the source code for the macro argument, by producing a warning for each use of the binary `+` operator with range highlighting and a Fix-It to replace the `+` with `-`.
 
 ## Adding your own macro
 

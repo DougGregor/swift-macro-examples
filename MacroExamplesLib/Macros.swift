@@ -1,3 +1,5 @@
+import Foundation
+
 /// "Stringify" the provided value and produce a tuple that includes both the
 /// original value as well as the source code that generated it.
 @freestanding(expression) public macro stringify<T>(_ value: T) -> (T, String) = #externalMacro(module: "MacroExamplesPlugin", type: "StringifyMacro")
@@ -25,6 +27,10 @@ public protocol ExpressibleByFontLiteral {
 /// Font literal similar to, e.g., #colorLiteral.
 @freestanding(expression) public macro fontLiteral<T>(name: String, size: Int, weight: FontWeight) -> T = #externalMacro(module: "MacroExamplesPlugin", type: "FontLiteralMacro")
   where T: ExpressibleByFontLiteral
+
+/// Check if provided string literal is a valid URL and produce a non-optional
+/// URL value. Emit error otherwise.
+@freestanding(expression) public macro URL(_ stringLiteral: String) -> URL = #externalMacro(module: "MacroExamplesPlugin", type: "URLMacro")
 
 
 /// Apply the specified attribute to each of the stored properties within the

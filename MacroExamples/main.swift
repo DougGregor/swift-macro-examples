@@ -26,6 +26,14 @@ struct Font: ExpressibleByFontLiteral {
 
 let _: Font = #fontLiteral(name: "Comic Sans", size: 14, weight: .thin)
 
+// "#URL" macro provides compile time checked URL construction. If the URL is
+// malformed an error is emitted. Otherwise a non-optional URL is expanded.
+print(#URL("https://swift.org/"))
+
+let domain = "domain.com"
+//print(#URL("https://\(domain)/api/path")) // error: #URL requires a static string literal
+//print(#URL("https://not a url.com")) // error: Malformed url
+
 // Use the "wrapStoredProperties" macro to deprecate all of the stored
 // properties.
 @wrapStoredProperties(#"available(*, deprecated, message: "hands off my data")"#)

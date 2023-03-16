@@ -178,6 +178,30 @@ struct ShippingOptions {
   static let all: ShippingOptions = [.express, .priority, .standard]
 }
 
+@MyOptionSet<UInt8>
+struct ShippingOptionsNestedOptionsEnum {
+  private enum Options: UInt8 {
+    case nextDay, secondDay
+    case priority, standard
+  }
+
+  static let express: ShippingOptionsNestedOptionsEnum = [.nextDay, .secondDay]
+  static let all: ShippingOptionsNestedOptionsEnum = [.express, .priority, .standard]
+}
+
+@MyOptionSet<UInt8>
+enum ShippingOptionsNestedOptionSet {
+  case nextDay, secondDay
+  case priority, standard
+}
+
+#if false
+// FIXME: Currently triggers a compilation error
+extension ShippingOptionsNestedOptionSet.Set {
+  static let express: Self = [.nextDay, .secondDay]
+  static let all: Self = [.express, .priority, .standard]
+}
+#endif
 
 // `@MetaEnum` adds a nested enum called `Meta` with the same cases, but no
 // associated values/payloads. Handy for e.g. describing a schema.

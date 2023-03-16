@@ -26,7 +26,8 @@
 		BD841F82294CE1F600DA4D81 /* AddBlocker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD841F81294CE1F600DA4D81 /* AddBlocker.swift */; };
 		BD8A3130294947BD00E83EB9 /* Macros.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8A312F294947BD00E83EB9 /* Macros.swift */; };
 		BD8A31312949480600E83EB9 /* libMacroExamplesLib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BD8A3126294947A100E83EB9 /* libMacroExamplesLib.dylib */; };
-		BDC559D629B857DF00F26DFF /* OptionSetItemMacro.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC559D529B857DF00F26DFF /* OptionSetItemMacro.swift */; };
+		BDB8C31129C26857000B4E7E /* OptionSetMacros.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB8C31029C26857000B4E7E /* OptionSetMacros.swift */; };
+		BDC559D629B857DF00F26DFF /* BitfieldMacro.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC559D529B857DF00F26DFF /* BitfieldMacro.swift */; };
 		BDF5AFE42947E5B000FA119B /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDF5AFE32947E5B000FA119B /* main.swift */; };
 		BDF5AFF82947E95C00FA119B /* StringifyMacro.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDF5AFF72947E95C00FA119B /* StringifyMacro.swift */; };
 		BDFB14B52948484000708DA6 /* MacroExamplesPluginTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDFB14B42948484000708DA6 /* MacroExamplesPluginTest.swift */; };
@@ -98,7 +99,8 @@
 		BD841F81294CE1F600DA4D81 /* AddBlocker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBlocker.swift; sourceTree = "<group>"; };
 		BD8A3126294947A100E83EB9 /* libMacroExamplesLib.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libMacroExamplesLib.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD8A312F294947BD00E83EB9 /* Macros.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Macros.swift; sourceTree = "<group>"; };
-		BDC559D529B857DF00F26DFF /* OptionSetItemMacro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionSetItemMacro.swift; sourceTree = "<group>"; };
+		BDB8C31029C26857000B4E7E /* OptionSetMacros.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionSetMacros.swift; sourceTree = "<group>"; };
+		BDC559D529B857DF00F26DFF /* BitfieldMacro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitfieldMacro.swift; sourceTree = "<group>"; };
 		BDF5AFE02947E5B000FA119B /* MacroExamples */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MacroExamples; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDF5AFE32947E5B000FA119B /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		BDF5AFEE2947E61100FA119B /* libMacroExamplesPlugin.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libMacroExamplesPlugin.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -161,7 +163,7 @@
 				1D682A95299E3313006F9F78 /* CustomCodable.swift */,
 				BD48319229AFF87200F3123A /* OptionSetMacro.swift */,
 				88E54A5129B5475400252D99 /* MetaEnumMacro.swift */,
-				BDC559D529B857DF00F26DFF /* OptionSetItemMacro.swift */,
+				BDC559D529B857DF00F26DFF /* BitfieldMacro.swift */,
 			);
 			path = MacroExamplesPlugin;
 			sourceTree = "<group>";
@@ -170,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				BD8A312F294947BD00E83EB9 /* Macros.swift */,
+				BDB8C31029C26857000B4E7E /* OptionSetMacros.swift */,
 				31757820298DC4AF00D79290 /* NewType.swift */,
 			);
 			path = MacroExamplesLib;
@@ -385,6 +388,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDB8C31129C26857000B4E7E /* OptionSetMacros.swift in Sources */,
 				BD8A3130294947BD00E83EB9 /* Macros.swift in Sources */,
 				31757821298DC4AF00D79290 /* NewType.swift in Sources */,
 			);
@@ -407,7 +411,7 @@
 				1D682A94299E2FFB006F9F78 /* CodableKey.swift in Sources */,
 				371A6719299C241F00E74A8A /* CaseDetectionMacro.swift in Sources */,
 				BD752BE5294D3BEC00D00A2E /* WarningMacro.swift in Sources */,
-				BDC559D629B857DF00F26DFF /* OptionSetItemMacro.swift in Sources */,
+				BDC559D629B857DF00F26DFF /* BitfieldMacro.swift in Sources */,
 				3175781D298DBC8700D79290 /* NewTypeMacro.swift in Sources */,
 				BDF5AFF82947E95C00FA119B /* StringifyMacro.swift in Sources */,
 				EC21BDEB298D9F9900D585C6 /* ObservableMacro.swift in Sources */,

@@ -2,9 +2,9 @@ import SwiftSyntax
 import SwiftSyntaxBuilder
 import SwiftSyntaxMacros
 
-public struct OptionSetItemMacro { }
+public struct BitfieldMacro { }
 
-extension OptionSetItemMacro: AccessorMacro {
+extension BitfieldMacro: AccessorMacro {
   public static func expansion(
     of attribute: AttributeSyntax,
     providingAccessorsOf declaration: some DeclSyntaxProtocol,

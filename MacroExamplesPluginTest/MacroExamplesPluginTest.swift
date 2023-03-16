@@ -7,7 +7,7 @@ import XCTest
 var testMacros: [String: Macro.Type] = [
   "stringify" : StringifyMacro.self,
   "OptionSet" : OptionSetMacro.self,
-  "OptionSetItem" : OptionSetItemMacro.self,
+  "Bitfield" : BitfieldMacro.self,
 ]
 
 final class MacroExamplesPluginTests: XCTestCase {
@@ -30,7 +30,7 @@ final class MacroExamplesPluginTests: XCTestCase {
     )
   }
 
-  func testOptionSet() {
+  func testOptionSetWithStaticVariables() {
     let sf: SourceFileSyntax =
       """
       @OptionSet<UInt8>
@@ -76,11 +76,102 @@ final class MacroExamplesPluginTests: XCTestCase {
       }
 
         static let express: ShippingOptions = [.nextDay, .secondDay]
-        static let all: ShippingOptions = [.express, .priority, .standard]typealias RawValue = UInt8var rawValue: RawValueinit() { self.rawValue = 0 }init(rawValue: RawValue) { self.rawValue = rawValue }
+        static let all: ShippingOptions = [.express, .priority, .standard]
+      typealias RawValue = UInt8
+      var rawValue: RawValue
+      init() { self.rawValue = 0 }
+      init(rawValue: RawValue) { self.rawValue = rawValue }
 
       }
       """#
     )
+  }
 
+  func testOptionSetWithNestedOptionsEnum() {
+    let sf: SourceFileSyntax =
+      """
+      @OptionSet<UInt8>
+      struct ShippingOptions {
+        private enum Options {
+          case nextDay, secondDay
+          case priority, standard
+        }
+
+        static let express: ShippingOptions = [.nextDay, .secondDay]
+        static let all: ShippingOptions = [.express, .priority, .standard]
+
+      }
+      """
+    let context = BasicMacroExpansionContext.init(
+      sourceFiles: [sf: .init(moduleName: "MyModule", fullFilePath: "test.swift")]
+    )
+    let transformedSF = sf.expand(macros: testMacros, in: context)
+    XCTAssertEqual(
+      transformedSF.description,
+      #"""
+
+      struct ShippingOptions {
+        private enum Options {
+          case nextDay, secondDay
+          case priority, standard
+        }
+
+        static let express: ShippingOptions = [.nextDay, .secondDay]
+        static let all: ShippingOptions = [.express, .priority, .standard]
+      typealias RawValue = UInt8
+      var rawValue: RawValue
+      init() { self.rawValue = 0 }
+      init(rawValue: RawValue) { self.rawValue = rawValue }
+       static let nextDay: Self =
+        Self(rawValue: 1 << Options.nextDay.rawValue)
+       static let secondDay: Self =
+        Self(rawValue: 1 << Options.secondDay.rawValue)
+       static let priority: Self =
+        Self(rawValue: 1 << Options.priority.rawValue)
+       static let standard: Self =
+        Self(rawValue: 1 << Options.standard.rawValue)
+
+      }
+      """#
+    )
+  }
+
+  func testOptionSetWithNestedOptionSet() {
+    let sf: SourceFileSyntax =
+      """
+      @OptionSet<UInt8>
+      enum ShippingOptions {
+        case nextDay, secondDay
+        case priority, standard
+      }
+      """
+    let context = BasicMacroExpansionContext.init(
+      sourceFiles: [sf: .init(moduleName: "MyModule", fullFilePath: "test.swift")]
+    )
+    let transformedSF = sf.expand(macros: testMacros, in: context)
+    XCTAssertEqual(
+      transformedSF.description,
+      #"""
+
+      enum ShippingOptions {
+        case nextDay, secondDay
+        case priority, standard
+      struct Set: OptionSet {
+      typealias RawValue = UInt8
+      var rawValue: RawValue
+      init() { self.rawValue = 0 }
+      init(rawValue: RawValue) { self.rawValue = rawValue }
+       static let nextDay: Self =
+        Self(rawValue: 1 << ShippingOptions.nextDay.rawValue)
+       static let secondDay: Self =
+        Self(rawValue: 1 << ShippingOptions.secondDay.rawValue)
+       static let priority: Self =
+        Self(rawValue: 1 << ShippingOptions.priority.rawValue)
+       static let standard: Self =
+        Self(rawValue: 1 << ShippingOptions.standard.rawValue)
+      }
+      }
+      """#
+    )
   }
 }

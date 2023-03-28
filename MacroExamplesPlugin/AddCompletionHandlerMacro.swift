@@ -1,3 +1,4 @@
+import SwiftDiagnostics
 import SwiftSyntax
 import SwiftSyntaxMacros
 
@@ -18,9 +19,45 @@ public struct AddCompletionHandlerMacro: PeerMacro {
 
     // This only makes sense for async functions.
     if funcDecl.signature.effectSpecifiers?.asyncSpecifier == nil {
-      throw CustomError.message(
-        "@addCompletionHandler requires an async function"
+      let newEffects: DeclEffectSpecifiersSyntax
+      if let existingEffects = funcDecl.signature.effectSpecifiers {
+        newEffects = existingEffects.with(\.asyncSpecifier, "async ")
+      } else {
+        newEffects = DeclEffectSpecifiersSyntax(asyncSpecifier: "async ")
+      }
+
+      let newSignature = funcDecl.signature.with(\.effectSpecifiers, newEffects)
+      let messageID = MessageID(domain: "MacroExamples", id: "MissingAsync")
+
+      let diag = Diagnostic(
+        // Where the error should go (on the "+").
+        node: Syntax(funcDecl.funcKeyword),
+        // The warning message and severity.
+        message: SimpleDiagnosticMessage(
+          message: "can only add a completion-handler variant to an 'async' function",
+          diagnosticID: messageID,
+          severity: .error
+        ),
+        fixIts: [
+          // Fix-It to replace the '+' with a '-'.
+          FixIt(
+            message: SimpleDiagnosticMessage(
+              message: "add 'async'",
+              diagnosticID: messageID,
+              severity: .error
+            ),
+            changes: [
+              FixIt.Change.replace(
+                oldNode: Syntax(funcDecl.signature),
+                newNode: Syntax(newSignature)
+              )
+            ]
+          ),
+        ]
       )
+
+      context.diagnose(diag)
+      return []
     }
 
     // Form the completion handler parameter.

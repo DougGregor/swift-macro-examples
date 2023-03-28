@@ -76,7 +76,7 @@ print("Point storage contains only the value we set:  \(point)")
 struct Treat {}
 
 @Observable
-final class Dog: Observable {
+final class Dog {
   var name: String?
   var treat: Treat?
 

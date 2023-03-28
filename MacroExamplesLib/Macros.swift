@@ -95,14 +95,18 @@ public macro Observable() = #externalMacro(module: "MacroExamplesPlugin", type: 
 @attached(accessor)
 public macro ObservableProperty() = #externalMacro(module: "MacroExamplesPlugin", type: "ObservablePropertyMacro")
 
+/// Adds a "completionHandler" variant of an async function, which creates a new
+/// task , calls thh original async function, and delivers its result to the completion
+/// handler.
 @attached(peer, names: overloaded)
-public macro addCompletionHandler() =
+public macro AddCompletionHandler() =
     #externalMacro(module: "MacroExamplesPlugin", type: "AddCompletionHandlerMacro")
 
 @attached(peer, names: overloaded)
-public macro addAsync() =
+public macro AddAsync() =
     #externalMacro(module: "MacroExamplesPlugin", type: "AddAsyncMacro")
 
+/// Add computed properties named `is<Case>` for each case element in the enum.
 @attached(member, names: arbitrary)
 public macro CaseDetection() = #externalMacro(module: "MacroExamplesPlugin", type: "CaseDetectionMacro")
 

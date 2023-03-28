@@ -121,17 +121,17 @@ let password = Password("squeamish ossifrage")
 print("password: description=\(password) hashValue=\(password.hashValue)")
 
 struct MyStruct {
-  @addCompletionHandler
+  @AddCompletionHandler
   func f(a: Int, for b: String, _ value: Double) async -> String {
     return b
   }
   
-  @addAsync
+  @AddAsync
   func c(a: Int, for b: String, _ value: Double, completionBlock: @escaping (Result<String, Error>) -> Void) -> Void {
     completionBlock(.success("a: \(a), b: \(b), value: \(value)"))
   }
   
-  @addAsync
+  @AddAsync
   func d(a: Int, for b: String, _ value: Double, completionBlock: @escaping (Bool) -> Void) -> Void {
     completionBlock(true)
   }

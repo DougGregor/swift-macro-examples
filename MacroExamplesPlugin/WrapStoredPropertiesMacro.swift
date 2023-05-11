@@ -87,7 +87,7 @@ extension DeclGroupSyntax {
   /// Enumerate the stored properties that syntactically occur in this
   /// declaration.
   func storedProperties() -> [VariableDeclSyntax] {
-    return members.members.compactMap { member in
+    return memberBlock.members.compactMap { member in
       guard let variable = member.decl.as(VariableDeclSyntax.self),
             variable.isStoredProperty else {
         return nil

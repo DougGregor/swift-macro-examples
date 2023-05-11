@@ -19,11 +19,11 @@ public struct AddCompletionHandlerMacro: PeerMacro {
 
     // This only makes sense for async functions.
     if funcDecl.signature.effectSpecifiers?.asyncSpecifier == nil {
-      let newEffects: DeclEffectSpecifiersSyntax
+      let newEffects: FunctionEffectSpecifiersSyntax
       if let existingEffects = funcDecl.signature.effectSpecifiers {
         newEffects = existingEffects.with(\.asyncSpecifier, "async ")
       } else {
-        newEffects = DeclEffectSpecifiersSyntax(asyncSpecifier: "async ")
+        newEffects = FunctionEffectSpecifiersSyntax(asyncSpecifier: "async ")
       }
 
       let newSignature = funcDecl.signature.with(\.effectSpecifiers, newEffects)
@@ -87,14 +87,11 @@ public struct AddCompletionHandlerMacro: PeerMacro {
       newParameterList = parameterList.appending(completionHandlerParam)
     }
 
-    let callArguments: [String] = try parameterList.map { param in
-      guard let argName = param.secondName ?? param.firstName else {
-        throw CustomError.message(
-          "@addCompletionHandler argument must have a name"
-        )
-      }
+    let callArguments: [String] = parameterList.map { param in
+      let argName = param.secondName ?? param.firstName
 
-      if let paramName = param.firstName, paramName.text != "_" {
+      let paramName = param.firstName
+      if paramName.text != "_" {
         return "\(paramName.text): \(argName.text)"
       }
 

@@ -66,7 +66,7 @@ public struct AddBlocker: ExpressionMacro {
               ExprSyntax(
                 binOp.with(
                   \.operatorToken,
-                  binOp.operatorToken.withKind(.binaryOperator("-"))
+                   binOp.operatorToken.with(\.tokenKind, .binaryOperator("-"))
                 )
               )
             )

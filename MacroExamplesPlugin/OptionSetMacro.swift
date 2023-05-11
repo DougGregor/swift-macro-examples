@@ -94,7 +94,7 @@ public struct OptionSetMacro {
     }
 
     // Find the option enum within the struct.
-    guard let optionsEnum = decl.members.members.compactMap({ member in
+    guard let optionsEnum = decl.memberBlock.members.compactMap({ member in
       if let enumDecl = member.decl.as(EnumDeclSyntax.self),
          enumDecl.identifier.text == optionsEnumName {
         return enumDecl
@@ -151,7 +151,7 @@ extension OptionSetMacro: MemberMacro {
     }
 
     // Find all of the case elements.
-    let caseElements = optionsEnum.members.members.flatMap { member in
+    let caseElements = optionsEnum.memberBlock.members.flatMap { member in
       guard let caseDecl = member.decl.as(EnumCaseDeclSyntax.self) else {
         return Array<EnumCaseElementSyntax>()
       }

@@ -13,11 +13,7 @@ public struct FontLiteralMacro: ExpressionMacro {
       of: macro.argumentList,
       with: "fontLiteralName"
     )
-    let initSyntax: ExprSyntax = ".init(\(argList))"
-    if let leadingTrivia = macro.leadingTrivia {
-      return initSyntax.with(\.leadingTrivia, leadingTrivia)
-    }
-    return initSyntax
+    return ".init(\(argList))"
   }
 }
 

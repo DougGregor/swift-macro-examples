@@ -24,7 +24,7 @@ public struct MetaEnumMacro {
       parentCase.with(\.associatedValue, nil)
     }
 
-    parentParamName = context.createUniqueName("parent")
+    parentParamName = context.makeUniqueName("parent")
   }
 
   func makeMetaEnum() -> DeclSyntax {

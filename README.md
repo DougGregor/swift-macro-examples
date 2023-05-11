@@ -8,7 +8,7 @@ There is an active effort to introduce [macros](https://forums.swift.org/t/a-pos
 
 Macros are an experimental feature, so you will need a custom Swift toolchain and some extra compiler flags. The Xcode project in this repository is a good starting point. To use it:
 
-1. Download a [development snapshot](https://www.swift.org/download/#snapshots) of the compiler from Swift.org from March 8, 2023 or later. At present, we only have these working on macOS, but are working to get other platforms working with other build systems.
+1. Download a [development snapshot](https://www.swift.org/download/#snapshots) of the compiler from Swift.org from May 10, 2023 or later. At present, we only have these working on macOS, but are working to get other platforms working with other build systems.
 2. To use SwiftPM to build the example project, use `swift build` from the toolchain, e.g.:
    ```
    /Library/Developer/Toolchains/swift-DEVELOPMENT-SNAPSHOT-2023-03-08-a.xctoolchain/usr/bin/swift build

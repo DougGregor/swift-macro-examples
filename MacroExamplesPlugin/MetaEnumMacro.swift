@@ -77,7 +77,7 @@ extension MetaEnumMacro: MemberMacro {
 
 extension EnumDeclSyntax {
   var caseElements: [EnumCaseElementSyntax] {
-    members.members.flatMap { member in
+    memberBlock.members.flatMap { member in
       guard let caseDecl = member.decl.as(EnumCaseDeclSyntax.self) else {
         return Array<EnumCaseElementSyntax>()
       }

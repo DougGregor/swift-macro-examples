@@ -59,7 +59,7 @@ public struct ObservableMacro: MemberMacro, MemberAttributeMacro {
       """
 
     let memberList = MemberDeclListSyntax(
-      declaration.members.members.filter {
+      declaration.memberBlock.members.filter {
         $0.decl.isObservableStoredProperty
       }
     )

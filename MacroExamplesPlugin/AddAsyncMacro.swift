@@ -32,7 +32,7 @@ public struct AddAsyncMacro: PeerMacro {
     }
     
     // Requires a completion handler block as last parameter
-    guard let completionHandlerParameterAttribute = funcDecl.signature.input.parameterList.last?.type?.as(AttributedTypeSyntax.self),
+    guard let completionHandlerParameterAttribute = funcDecl.signature.input.parameterList.last?.type.as(AttributedTypeSyntax.self),
     let completionHandlerParameter = completionHandlerParameterAttribute.baseType.as(FunctionTypeSyntax.self) else {
       throw CustomError.message(
         "@addAsync requires an function that has a completion handler as last parameter"
@@ -72,14 +72,11 @@ public struct AddAsyncMacro: PeerMacro {
       } ?? []
     )
     
-    let callArguments: [String] = try newParameterList.map { param in
-      guard let argName = param.secondName ?? param.firstName else {
-        throw CustomError.message(
-          "@addAsync argument must have a name"
-        )
-      }
+    let callArguments: [String] = newParameterList.map { param in
+      let argName = param.secondName ?? param.firstName
       
-      if let paramName = param.firstName, paramName.text != "_" {
+      let paramName = param.firstName
+      if paramName.text != "_" {
         return "\(paramName.text): \(argName.text)"
       }
       
@@ -116,7 +113,7 @@ public struct AddAsyncMacro: PeerMacro {
          funcDecl.signature
           .with(
             \.effectSpecifiers,
-             DeclEffectSpecifiersSyntax(leadingTrivia: .space, asyncSpecifier: "async", throwsSpecifier: isResultReturn ? " throws" : nil)  // add async
+             FunctionEffectSpecifiersSyntax(leadingTrivia: .space, asyncSpecifier: "async", throwsSpecifier: isResultReturn ? " throws" : nil)  // add async
           )
           .with(\.output, successReturnType != nil ? ReturnClauseSyntax(leadingTrivia: .space, returnType: successReturnType!.with(\.leadingTrivia, .space)) : nil)  // add result type
           .with(

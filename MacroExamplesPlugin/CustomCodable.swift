@@ -9,7 +9,7 @@ public struct CustomCodable: MemberMacro {
     in context: some MacroExpansionContext
   ) throws -> [DeclSyntax] {
     
-    let memberList = declaration.members.members
+    let memberList = declaration.memberBlock.members
     
     let cases = memberList.compactMap({ member -> String? in
       // is a property

@@ -17,6 +17,8 @@
 		88E54A5229B5475400252D99 /* MetaEnumMacro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E54A5129B5475400252D99 /* MetaEnumMacro.swift */; };
 		88E54A5429B5520A00252D99 /* MetaEnumMacroTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E54A5329B5520A00252D99 /* MetaEnumMacroTests.swift */; };
 		911F5F8829BB5A150081AF9C /* URLMacro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911F5F8729BB5A150081AF9C /* URLMacro.swift */; };
+		91B1E4A32A2AE5A60052C820 /* SwiftUIEqutableDebuggable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B1E4A22A2AE5A60052C820 /* SwiftUIEqutableDebuggable.swift */; };
+		91B1E4A52A2AE65E0052C820 /* SwiftUIEqutableDebuggableTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B1E4A42A2AE65E0052C820 /* SwiftUIEqutableDebuggableTest.swift */; };
 		BD2CDEE9298B24040015A701 /* Diagnostics.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2CDEE8298B24040015A701 /* Diagnostics.swift */; };
 		BD2CDEEB298B34730015A701 /* WrapStoredPropertiesMacro.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2CDEEA298B34730015A701 /* WrapStoredPropertiesMacro.swift */; };
 		BD2CDEED298B4A650015A701 /* DictionaryIndirectionMacro.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2CDEEC298B4A650015A701 /* DictionaryIndirectionMacro.swift */; };
@@ -88,6 +90,8 @@
 		88E54A5129B5475400252D99 /* MetaEnumMacro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaEnumMacro.swift; sourceTree = "<group>"; };
 		88E54A5329B5520A00252D99 /* MetaEnumMacroTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaEnumMacroTests.swift; sourceTree = "<group>"; };
 		911F5F8729BB5A150081AF9C /* URLMacro.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLMacro.swift; sourceTree = "<group>"; };
+		91B1E4A22A2AE5A60052C820 /* SwiftUIEqutableDebuggable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIEqutableDebuggable.swift; sourceTree = "<group>"; };
+		91B1E4A42A2AE65E0052C820 /* SwiftUIEqutableDebuggableTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIEqutableDebuggableTest.swift; sourceTree = "<group>"; };
 		BD2CDEE8298B24040015A701 /* Diagnostics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diagnostics.swift; sourceTree = "<group>"; };
 		BD2CDEEA298B34730015A701 /* WrapStoredPropertiesMacro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrapStoredPropertiesMacro.swift; sourceTree = "<group>"; };
 		BD2CDEEC298B4A650015A701 /* DictionaryIndirectionMacro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryIndirectionMacro.swift; sourceTree = "<group>"; };
@@ -161,6 +165,7 @@
 				1D682A93299E2FFB006F9F78 /* CodableKey.swift */,
 				1D682A95299E3313006F9F78 /* CustomCodable.swift */,
 				BD48319229AFF87200F3123A /* OptionSetMacro.swift */,
+				91B1E4A22A2AE5A60052C820 /* SwiftUIEqutableDebuggable.swift */,
 				88E54A5129B5475400252D99 /* MetaEnumMacro.swift */,
 			);
 			path = MacroExamplesPlugin;
@@ -220,6 +225,7 @@
 			children = (
 				BDFB14B42948484000708DA6 /* MacroExamplesPluginTest.swift */,
 				3175781E298DBFA100D79290 /* NewTypePluginTests.swift */,
+				91B1E4A42A2AE65E0052C820 /* SwiftUIEqutableDebuggableTest.swift */,
 				88E54A5329B5520A00252D99 /* MetaEnumMacroTests.swift */,
 			);
 			path = MacroExamplesPluginTest;
@@ -416,6 +422,7 @@
 				BD2CDEED298B4A650015A701 /* DictionaryIndirectionMacro.swift in Sources */,
 				BD752BE7294D461B00D00A2E /* FontLiteralMacro.swift in Sources */,
 				BD7324B829989178009C6A08 /* AddCompletionHandlerMacro.swift in Sources */,
+				91B1E4A32A2AE5A60052C820 /* SwiftUIEqutableDebuggable.swift in Sources */,
 				BD48319329AFF87200F3123A /* OptionSetMacro.swift in Sources */,
 				911F5F8829BB5A150081AF9C /* URLMacro.swift in Sources */,
 				1D682A92299CE4C6006F9F78 /* AddAsyncMacro.swift in Sources */,
@@ -426,6 +433,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91B1E4A52A2AE65E0052C820 /* SwiftUIEqutableDebuggableTest.swift in Sources */,
 				BDFB14B52948484000708DA6 /* MacroExamplesPluginTest.swift in Sources */,
 				3175781F298DBFA100D79290 /* NewTypePluginTests.swift in Sources */,
 				88E54A5429B5520A00252D99 /* MetaEnumMacroTests.swift in Sources */,

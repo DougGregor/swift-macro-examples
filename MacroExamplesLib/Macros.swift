@@ -147,3 +147,11 @@ public macro CustomCodable() = #externalMacro(module: "MacroExamplesPlugin", typ
 @attached(member, names: arbitrary)
 @attached(conformance)
 public macro MyOptionSet<RawType>() = #externalMacro(module: "MacroExamplesPlugin", type: "OptionSetMacro")
+
+/// Adds public initializer to struct or class
+@attached(member, names: arbitrary)
+public macro PublicInit() = #externalMacro(module: "MacroExamplesPlugin", type: "PublicInitMacro")
+
+/// Adds internal initiailizer to struct or class
+@attached(member, names: arbitrary)
+public macro InternalInit() = #externalMacro(module: "MacroExamplesPlugin", type: "InternalInitMacro")

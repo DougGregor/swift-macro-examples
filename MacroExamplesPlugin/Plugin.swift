@@ -21,7 +21,9 @@ struct MyPlugin: CompilerPlugin {
     CustomCodable.self,
     OptionSetMacro.self,
     NewTypeMacro.self,
-    URLMacro.self
+    URLMacro.self,
+    PublicInitMacro.self,
+    InternalInitMacro.self
   ]
 }
 #endif

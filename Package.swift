@@ -38,6 +38,10 @@ let package = Package(
         ],
         path: "MacroExamplesPlugin"
       ),
+	  .testTarget(name: "MacroExamplesPluginTest",
+		dependencies: ["MacroExamplesPlugin"],
+		path: "MacroExamplesPluginTest"
+	  ),
       .target(name: "MacroExamplesLib",
         dependencies: ["MacroExamplesPlugin"],  
         path: "MacroExamplesLib"

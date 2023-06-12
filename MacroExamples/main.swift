@@ -200,3 +200,9 @@ struct ShippingOptions {
 }
 
 print(Value.Meta(.integer(42)) == .integer)
+
+@PublicInit struct User {
+  let firstName: String
+  let lastName: String
+  let age: Int
+}

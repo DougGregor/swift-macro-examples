@@ -3,6 +3,7 @@ import SwiftSyntax
 import SwiftSyntaxBuilder
 import SwiftSyntaxMacros
 import MacroExamplesPlugin
+import SwiftSyntaxMacrosTestSupport
 
 final class InitMacroTests: XCTestCase {
 

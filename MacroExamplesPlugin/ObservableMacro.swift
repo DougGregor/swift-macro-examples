@@ -28,7 +28,7 @@ public struct ObservableMacro: MemberMacro, MemberAttributeMacro {
       return []
     }
 
-    let parentName = identified.identifier
+      let parentName = identified.identifier.trimmed
 
     let registrar: DeclSyntax =
       """

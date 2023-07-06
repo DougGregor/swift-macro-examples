@@ -1,22 +1,21 @@
 # Swift Macro Examples
 
-
-
-There is an active effort to introduce [macros](https://forums.swift.org/t/a-possible-vision-for-macros-in-swift/60900) into the Swift programming language. This repository includes some example macros that can be used to explore the macro proposals and experiment with the current implementation of the feature. 
+There is an active effort to introduce [macros](https://forums.swift.org/t/a-possible-vision-for-macros-in-swift/60900) into the Swift programming language. This repository includes some example macros that can be used to explore the macro proposals and experiment with the current implementation of the feature.
 
 ## Getting started
 
 Macros are an experimental feature, so you will need a custom Swift toolchain and some extra compiler flags. The Xcode project in this repository is a good starting point. To use it:
 
 1. Download a [development snapshot](https://www.swift.org/download/#snapshots) of the compiler from Swift.org from May 10, 2023 or later. At present, we only have these working on macOS, but are working to get other platforms working with other build systems.
-2. To use SwiftPM to build the example project, use `swift build` from the toolchain, e.g.:
+2. Use SwiftPM to build the example project via `swift build` from the toolchain, e.g.:
    ```
    /Library/Developer/Toolchains/swift-DEVELOPMENT-SNAPSHOT-2023-03-08-a.xctoolchain/usr/bin/swift build
    ```
-3. To use Xcode to build the example project:
-  a. Open `MacroExamples.xcodeproj` in Xcode
-  b. Go to the Xcode -> Toolchains menu and select the development toolchain you downloaded.
-  c. Make sure the `MacroExamples` scheme is selected, then build and run! If the first build fails, build again--there's something funky going on with the dependencies. Then build again!
+
+You can also open, build, and run this project in Xcode itself:
+  - Open `Package.swift` in Xcode
+  - Go to the Xcode -> Toolchains menu and select the development toolchain you downloaded.
+  - Build and run!
 
 The output of the `MacroExamples` program is pretty simple: it shows the result of running the example macro(s). The `main.swift` file is annotated to describe what the macros are actually doing.
 

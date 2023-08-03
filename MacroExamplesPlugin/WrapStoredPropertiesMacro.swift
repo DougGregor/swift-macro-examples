@@ -24,7 +24,7 @@ public struct WrapStoredPropertiesMacro: MemberAttributeMacro {
       return []
     }
 
-    guard case let .argumentList(arguments) = node.argument,
+    guard case let .argumentList(arguments) = node.arguments,
         let firstElement = arguments.first,
         let stringLiteral = firstElement.expression
       .as(StringLiteralExprSyntax.self),
@@ -35,7 +35,7 @@ public struct WrapStoredPropertiesMacro: MemberAttributeMacro {
 
     return [
       AttributeSyntax(
-        attributeName: SimpleTypeIdentifierSyntax(
+        attributeName: IdentifierTypeSyntax(
           name: .identifier(wrapperName.content.text)
         )
       )
@@ -55,13 +55,13 @@ extension VariableDeclSyntax {
     }
 
     let binding = bindings.first!
-    switch binding.accessor {
+    switch binding.accessorBlock?.accessors {
     case .none:
       return true
 
-    case .accessors(let node):
-      for accessor in node.accessors {
-        switch accessor.accessorKind.tokenKind {
+    case .accessors(let accessors):
+      for accessor in accessors {
+        switch accessor.accessorSpecifier.tokenKind {
         case .keyword(.willSet), .keyword(.didSet):
           // Observers can occur on a stored property.
           break
@@ -75,9 +75,6 @@ extension VariableDeclSyntax {
       return true
 
     case .getter:
-      return false
-
-    @unknown default:
       return false
     }
   }

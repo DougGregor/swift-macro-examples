@@ -12,11 +12,11 @@ extension NewTypeMacro: MemberMacro {
   ) throws -> [DeclSyntax] where Declaration : DeclGroupSyntax, Context : MacroExpansionContext {
     do {
       guard
-        case .argumentList(let arguments) = node.argument,
+        case .argumentList(let arguments) = node.arguments,
         arguments.count == 1,
         let memberAccessExn = arguments.first?
           .expression.as(MemberAccessExprSyntax.self),
-        let rawType = memberAccessExn.base?.as(IdentifierExprSyntax.self)
+        let rawType = memberAccessExn.base?.as(DeclReferenceExprSyntax.self)
       else {
         throw CustomError.message(#"@NewType requires the raw type as an argument, in the form "RawType.self"."#)
       }

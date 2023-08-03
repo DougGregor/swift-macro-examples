@@ -61,7 +61,7 @@ public struct AddCompletionHandlerMacro: PeerMacro {
     }
 
     // Form the completion handler parameter.
-    let resultType: TypeSyntax? = funcDecl.signature.output?.returnType.with(\.leadingTrivia, []).with(\.trailingTrivia, [])
+    let resultType: TypeSyntax? = funcDecl.signature.returnClause?.type.with(\.leadingTrivia, []).with(\.trailingTrivia, [])
 
     let completionHandlerParam =
       FunctionParameterSyntax(
@@ -71,20 +71,20 @@ public struct AddCompletionHandlerMacro: PeerMacro {
       )
 
     // Add the completion handler parameter to the parameter list.
-    let parameterList = funcDecl.signature.input.parameterList
-    let newParameterList: FunctionParameterListSyntax
+    let parameterList = funcDecl.signature.parameterClause.parameters
+    var newParameterList = parameterList
     if let lastParam = parameterList.last {
       // We need to add a trailing comma to the preceding list.
-      newParameterList = parameterList.removingLast()
-        .appending(
+      newParameterList.removeLast()
+      newParameterList += [
           lastParam.with(
             \.trailingComma,
             .commaToken(trailingTrivia: .space)
-          )
-        )
-        .appending(completionHandlerParam)
+          ),
+          completionHandlerParam
+      ]
     } else {
-      newParameterList = parameterList.appending(completionHandlerParam)
+      newParameterList.append(completionHandlerParam)
     }
 
     let callArguments: [String] = parameterList.map { param in
@@ -99,7 +99,7 @@ public struct AddCompletionHandlerMacro: PeerMacro {
     }
 
     let call: ExprSyntax =
-      "\(funcDecl.identifier)(\(raw: callArguments.joined(separator: ", ")))"
+      "\(funcDecl.name)(\(raw: callArguments.joined(separator: ", ")))"
 
     // FIXME: We should make CodeBlockSyntax ExpressibleByStringInterpolation,
     // so that the full body could go here.
@@ -116,8 +116,8 @@ public struct AddCompletionHandlerMacro: PeerMacro {
     let newAttributeList = AttributeListSyntax(
       funcDecl.attributes?.filter {
         guard case let .attribute(attribute) = $0,
-              let attributeType = attribute.attributeName.as(SimpleTypeIdentifierSyntax.self),
-              let nodeType = node.attributeName.as(SimpleTypeIdentifierSyntax.self)
+              let attributeType = attribute.attributeName.as(IdentifierTypeSyntax.self),
+              let nodeType = node.attributeName.as(IdentifierTypeSyntax.self)
         else {
           return true
         }
@@ -135,10 +135,10 @@ public struct AddCompletionHandlerMacro: PeerMacro {
             \.effectSpecifiers,
             funcDecl.signature.effectSpecifiers?.with(\.asyncSpecifier, nil)  // drop async
           )
-          .with(\.output, nil)  // drop result type
+          .with(\.returnClause, nil)  // drop result type
           .with(
-            \.input,  // add completion handler parameter
-            funcDecl.signature.input.with(\.parameterList, newParameterList)
+            \.parameterClause,  // add completion handler parameter
+             funcDecl.signature.parameterClause.with(\.parameters, newParameterList)
               .with(\.trailingTrivia, [])
           )
       )

@@ -15,7 +15,7 @@ extension DictionaryStorageMacro: AccessorMacro {
     guard let varDecl = declaration.as(VariableDeclSyntax.self),
       let binding = varDecl.bindings.first,
       let identifier = binding.pattern.as(IdentifierPatternSyntax.self)?.identifier,
-      binding.accessor == nil,
+      binding.accessorBlock == nil,
       let type = binding.typeAnnotation?.type
     else {
       return []
@@ -74,7 +74,7 @@ extension DictionaryStorageMacro: MemberAttributeMacro {
 
     return [
       AttributeSyntax(
-        attributeName: SimpleTypeIdentifierSyntax(
+        attributeName: IdentifierTypeSyntax(
           name: .identifier("DictionaryStorage")
         )
       )

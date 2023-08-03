@@ -7,7 +7,7 @@ private extension DeclSyntaxProtocol {
        let binding = property.bindings.first,
        let identifier = binding.pattern.as(IdentifierPatternSyntax.self)?.identifier,
        identifier.text != "_registrar", identifier.text != "_storage",
-       binding.accessor == nil {
+       binding.accessorBlock == nil {
       return true
     }
 
@@ -24,11 +24,11 @@ public struct ObservableMacro: MemberMacro, MemberAttributeMacro {
     providingMembersOf declaration: some DeclGroupSyntax,
     in context: some MacroExpansionContext
   ) throws -> [DeclSyntax] {
-    guard let identified = declaration.asProtocol(IdentifiedDeclSyntax.self) else {
+    guard let identified = declaration.asProtocol(NamedDeclSyntax.self) else {
       return []
     }
 
-    let parentName = identified.identifier
+    let parentName = identified.name
 
     let registrar: DeclSyntax =
       """
@@ -58,11 +58,9 @@ public struct ObservableMacro: MemberMacro, MemberAttributeMacro {
       }
       """
 
-    let memberList = MemberDeclListSyntax(
-      declaration.memberBlock.members.filter {
-        $0.decl.isObservableStoredProperty
-      }
-    )
+    let memberList = declaration.memberBlock.members.filter {
+      $0.decl.isObservableStoredProperty
+    }
 
     let storageStruct: DeclSyntax =
       """
@@ -100,7 +98,7 @@ public struct ObservableMacro: MemberMacro, MemberAttributeMacro {
 
     return [
       AttributeSyntax(
-        attributeName: SimpleTypeIdentifierSyntax(
+        attributeName: IdentifierTypeSyntax(
           name: .identifier("ObservableProperty")
         )
       )
@@ -128,7 +126,7 @@ public struct ObservablePropertyMacro: AccessorMacro {
     guard let property = declaration.as(VariableDeclSyntax.self),
       let binding = property.bindings.first,
       let identifier = binding.pattern.as(IdentifierPatternSyntax.self)?.identifier,
-      binding.accessor == nil
+      binding.accessorBlock == nil
     else {
       return []
     }

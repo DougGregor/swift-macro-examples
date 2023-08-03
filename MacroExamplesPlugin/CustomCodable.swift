@@ -20,11 +20,11 @@ public struct CustomCodable: MemberMacro {
       
       // if it has a CodableKey macro on it
       if let customKeyMacro = member.decl.as(VariableDeclSyntax.self)?.attributes?.first(where: { element in
-        element.as(AttributeSyntax.self)?.attributeName.as(SimpleTypeIdentifierSyntax.self)?.description == "CodableKey"
+        element.as(AttributeSyntax.self)?.attributeName.as(IdentifierTypeSyntax.self)?.description == "CodableKey"
       }) {
         
         // Uses the value in the Macro
-        let customKeyValue = customKeyMacro.as(AttributeSyntax.self)!.argument!.as(TupleExprElementListSyntax.self)!.first!.expression
+        let customKeyValue = customKeyMacro.as(AttributeSyntax.self)!.arguments!.as(LabeledExprListSyntax.self)!.first!.expression
         
         return "case \(propertyName) = \(customKeyValue)"
       } else {

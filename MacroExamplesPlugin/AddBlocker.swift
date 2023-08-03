@@ -15,14 +15,14 @@ public struct AddBlocker: ExpressionMacro {
       _ node: InfixOperatorExprSyntax
     ) -> ExprSyntax {
       // Identify any infix operator + in the tree.
-      if let binOp = node.operatorOperand.as(BinaryOperatorExprSyntax.self) {
-        if binOp.operatorToken.text == "+" {
+      if let binOp = node.operator.as(BinaryOperatorExprSyntax.self) {
+        if binOp.operator.text == "+" {
           // Form the warning
           let messageID = MessageID(domain: "silly", id: "addblock")
           diagnostics.append(
             Diagnostic(
               // Where the warning should go (on the "+").
-              node: Syntax(node.operatorOperand),
+              node: Syntax(node.operator),
               // The warning message and severity.
               message: SimpleDiagnosticMessage(
                 message: "blocked an add; did you mean to subtract?",
@@ -44,12 +44,12 @@ public struct AddBlocker: ExpressionMacro {
                   ),
                   changes: [
                     FixIt.Change.replace(
-                      oldNode: Syntax(binOp.operatorToken),
+                      oldNode: Syntax(binOp.operator),
                       newNode: Syntax(
                         TokenSyntax(
                           .binaryOperator("-"),
-                          leadingTrivia: binOp.operatorToken.leadingTrivia,
-                          trailingTrivia: binOp.operatorToken.trailingTrivia,
+                          leadingTrivia: binOp.operator.leadingTrivia,
+                          trailingTrivia: binOp.operator.trailingTrivia,
                           presence: .present
                         )
                       )
@@ -62,11 +62,11 @@ public struct AddBlocker: ExpressionMacro {
 
           return ExprSyntax(
             node.with(
-              \.operatorOperand,
+              \.operator,
               ExprSyntax(
                 binOp.with(
-                  \.operatorToken,
-                   binOp.operatorToken.with(\.tokenKind, .binaryOperator("-"))
+                  \.operator,
+                   binOp.operator.with(\.tokenKind, .binaryOperator("-"))
                 )
               )
             )
@@ -83,7 +83,7 @@ public struct AddBlocker: ExpressionMacro {
     in context: some MacroExpansionContext
   ) throws -> ExprSyntax {
     let visitor = AddVisitor()
-    let result = visitor.visit(Syntax(node))
+    let result = visitor.rewrite(Syntax(node))
 
     for diag in visitor.diagnostics {
       context.diagnose(diag)

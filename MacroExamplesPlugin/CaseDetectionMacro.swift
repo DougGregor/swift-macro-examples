@@ -22,7 +22,7 @@ public struct CaseDetectionMacro: MemberMacro {
   ) throws -> [DeclSyntax] {
     declaration.memberBlock.members
       .compactMap { $0.decl.as(EnumCaseDeclSyntax.self) }
-      .map { $0.elements.first!.identifier }
+      .map { $0.elements.first!.name }
       .map { ($0, $0.initialUppercased) }
       .map { original, uppercased in
         """

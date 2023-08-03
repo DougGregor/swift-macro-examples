@@ -6,7 +6,7 @@ import SwiftSyntaxBuilder
 public struct MetaEnumMacro {
   let parentTypeName: TokenSyntax
   let childCases: [EnumCaseElementSyntax]
-  let access: ModifierListSyntax.Element?
+  let access: DeclModifierListSyntax.Element?
   let parentParamName: TokenSyntax
 
   init(node: AttributeSyntax, declaration: some DeclGroupSyntax, context: some MacroExpansionContext) throws {
@@ -16,12 +16,12 @@ public struct MetaEnumMacro {
       ])
     }
 
-    parentTypeName = enumDecl.identifier.with(\.trailingTrivia, [])
+    parentTypeName = enumDecl.name.with(\.trailingTrivia, [])
 
     access = enumDecl.modifiers?.first(where: \.isNeededAccessLevelModifier)
 
     childCases = enumDecl.caseElements.map { parentCase in
-      parentCase.with(\.associatedValue, nil)
+      parentCase.with(\.parameterClause, nil)
     }
 
     parentParamName = context.makeUniqueName("parent")
@@ -30,7 +30,7 @@ public struct MetaEnumMacro {
   func makeMetaEnum() -> DeclSyntax {
     // FIXME: Why does this need to be a string to make trailing trivia work properly?
     let caseDecls = childCases.map { childCase in
-      "    case \(childCase.identifier)"
+      "    case \(childCase.name)"
     }.joined(separator: "\n")
 
     return """
@@ -47,8 +47,8 @@ public struct MetaEnumMacro {
     // FIXME: Why does this need to be a string to make trailing trivia work properly?
     let caseStatements = childCases.map { childCase in
       """
-            case .\(childCase.identifier):
-              self = .\(childCase.identifier)
+            case .\(childCase.name):
+              self = .\(childCase.name)
       """
     }.joined(separator: "\n")
 

@@ -20,15 +20,14 @@ public struct FontLiteralMacro: ExpressionMacro {
 /// Replace the label of the first element in the tuple with the given
 /// new label.
 private func replaceFirstLabel(
-  of tuple: TupleExprElementListSyntax,
+  of tuple: LabeledExprListSyntax,
   with newLabel: String
-) -> TupleExprElementListSyntax {
+) -> LabeledExprListSyntax {
   guard let firstElement = tuple.first else {
     return tuple
   }
 
-  return tuple.replacing(
-    childAt: 0,
-    with: firstElement.with(\.label, .identifier(newLabel))
-  )
+  var tuple = tuple
+  tuple[tuple.startIndex] = firstElement.with(\.label, .identifier(newLabel))
+  return tuple
 }

@@ -153,9 +153,9 @@ struct CustomCodableString: Codable {
 
 Task {
   let myStruct = MyStruct()
-  let a = try? await myStruct.c(a: 5, for: "Test", 20)
-  
-  await myStruct.d(a: 10, for: "value", 40)
+  _ = try? await myStruct.c(a: 5, for: "Test", 20)
+
+  _ = await myStruct.d(a: 10, for: "value", 40)
 }
 
 MyStruct().f(a: 1, for: "hello", 3.14159) { result in
